@@ -1,29 +1,40 @@
-import { Geist, Geist_Mono } from "next/font/google"
-
+import type { Metadata } from "next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { LenisProvider } from "@/components/layout/lenis-provider"
+import { geist, fontMono } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
+import { PageTransition } from "@/components/layout/page-transition"
+import { Navbar } from "@/components/layout/navbar"
+import { Footer } from "@/components/layout/footer"
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
+export const metadata: Metadata = {
+  title: {
+    default: "XYZ Air Charter",
+    template: "%s | XYZ Air Charter",
+  },
+  description: "Private air charter services across East Africa.",
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
+      className={cn(geist.variable, fontMono.variable, "font-sans antialiased")}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <LenisProvider>
+            <PageTransition>
+              <Navbar />
+              {children}
+              <Footer />
+            </PageTransition>
+          </LenisProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
