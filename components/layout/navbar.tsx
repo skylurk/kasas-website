@@ -27,7 +27,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
-  const transparentRoutes = ["/", "/about"]
+  const transparentRoutes = ["/", "/about", "/fleet"]
   const isHome = transparentRoutes.includes(pathname)
 
   const { resolvedTheme } = useTheme()

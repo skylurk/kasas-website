@@ -1,5 +1,7 @@
 import { DornierAvionics } from "@/components/sections/fleet/dornier-avionics"
+import { DornierConfigurations } from "@/components/sections/fleet/dornier-configuration"
 import { DornierHero }      from "@/components/sections/fleet/dornier-hero"
+import { DornierPerformance } from "@/components/sections/fleet/dornier-performance"
 import { DornierSpecs } from "@/components/sections/fleet/dornier-specs"
 import { DornierThreeView } from "@/components/sections/fleet/dornier-three-view"
 
@@ -15,6 +17,8 @@ export default function Dornier228Page() {
       <DornierThreeView />
       <DornierSpecs />
       <DornierAvionics />
+      <DornierPerformance />
+      <DornierConfigurations />
     </main>
   )
 }
