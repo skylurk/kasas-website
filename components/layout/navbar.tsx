@@ -4,30 +4,33 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { useTheme } from "next-themes"
 
-
 const navLinks = [
-  { label: "Fleet",   href: "/fleet"   },
-  { label: "Routes",  href: "/routes"  },
-  { label: "About",   href: "/about"   },
+  { label: "About Us", href: "/about" },
+  { label: "The Dornier 228", href: "/fleet" },
+  { label: "Routes", href: "/routes" },
   { label: "Contact", href: "/contact" },
 ]
 
 export function Navbar() {
-
-  const [open, setOpen]       = useState(false)
+  const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const pathname              = usePathname()
-  const isHome                = pathname === "/"
+  const pathname = usePathname()
 
-  const { resolvedTheme } = useTheme();
+  const transparentRoutes = ["/", "/about"]
+  const isHome = transparentRoutes.includes(pathname)
 
-
+  const { resolvedTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -38,36 +41,36 @@ export function Navbar() {
   // Transparent when: on home page AND hasn't scrolled yet
   const isTransparent = isHome && !scrolled
 
-const logoSrc = isTransparent || resolvedTheme === "dark"
-  ? "/images/logos/kasas-limited-white-logo.png"
-  : "/images/logos/kasas-limited-black-logo.png"
-
+  const logoSrc =
+    isTransparent || resolvedTheme === "dark"
+      ? "/images/logos/kasas-limited-white-logo.png"
+      : "/images/logos/kasas-limited-black-logo.png"
 
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y:   0 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
-        "fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 md:px-12 h-20 transition-all duration-500",
+        "fixed inset-x-0 top-0 z-50 flex h-20 items-center justify-between px-6 transition-all duration-500 md:px-12",
         isTransparent
-          ? "bg-transparent border-transparent"
-          : "bg-background/80 backdrop-blur-sm border-b border-border"
+          ? "border-transparent bg-transparent"
+          : "border-b border-border bg-background/80 backdrop-blur-sm"
       )}
     >
-{/* Logo */}
-<Link href="/" className="relative h-8 w-32">
-  <Image
-    src={logoSrc}
-    alt="Kasas Limited"
-    fill
-    className="object-contain object-left transition-opacity duration-500"
-    priority
-  />
-</Link>
+      {/* Logo */}
+      <Link href="/" className="relative h-8 w-32">
+        <Image
+          src={logoSrc}
+          alt="Kasas Limited"
+          fill
+          className="object-contain object-left transition-opacity duration-500"
+          priority
+        />
+      </Link>
 
       {/* Desktop nav */}
-      <nav className="hidden md:flex items-center gap-8">
+      <nav className="hidden items-center gap-8 md:flex">
         {navLinks.map((link) => {
           const isActive = pathname === link.href
 
@@ -79,10 +82,10 @@ const logoSrc = isTransparent || resolvedTheme === "dark"
                 "relative text-sm transition-colors duration-500",
                 isTransparent
                   ? isActive
-                    ? "text-white font-medium"
+                    ? "font-medium text-white"
                     : "text-white/70 hover:text-white"
                   : isActive
-                    ? "text-foreground font-medium"
+                    ? "font-medium text-foreground"
                     : "text-muted-foreground hover:text-foreground"
               )}
             >
@@ -91,10 +94,13 @@ const logoSrc = isTransparent || resolvedTheme === "dark"
                 <motion.span
                   layoutId="nav-underline"
                   className={cn(
-                    "absolute -bottom-1 left-0 right-0 h-px",
+                    "absolute right-0 -bottom-1 left-0 h-px",
                     isTransparent ? "bg-white" : "bg-foreground"
                   )}
-                  transition={{ duration: 0.3, ease: [0.33, 1, 0.68, 1] as const }}
+                  transition={{
+                    duration: 0.3,
+                    ease: [0.33, 1, 0.68, 1] as const,
+                  }}
                 />
               )}
             </Link>
@@ -106,7 +112,7 @@ const logoSrc = isTransparent || resolvedTheme === "dark"
       <Link
         href="/contact"
         className={cn(
-          "hidden md:inline-flex items-center justify-center h-10 px-5 rounded-md text-sm font-medium transition-all duration-500",
+          "hidden h-10 items-center justify-center rounded-md px-5 text-sm font-medium transition-all duration-500 md:inline-flex",
           isTransparent
             ? "bg-white text-black hover:bg-white/90"
             : "bg-primary text-primary-foreground hover:opacity-90"
@@ -128,7 +134,7 @@ const logoSrc = isTransparent || resolvedTheme === "dark"
             <Menu className="h-5 w-5" />
           </button>
         </SheetTrigger>
-        <SheetContent side="right" className="w-72 flex flex-col pt-16">
+        <SheetContent side="right" className="flex w-72 flex-col pt-16">
           <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
           <nav className="flex flex-col gap-6">
             {navLinks.map((link) => {
@@ -157,14 +163,13 @@ const logoSrc = isTransparent || resolvedTheme === "dark"
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="flex items-center justify-center h-12 w-full rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+              className="flex h-12 w-full items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
               Book a Flight
             </Link>
           </div>
         </SheetContent>
       </Sheet>
-
     </motion.header>
   )
 }

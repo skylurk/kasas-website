@@ -34,30 +34,28 @@ export function IntroSplit() {
           <SectionHeading
             label="Who We Are"
             heading="Private Aviation, Redefined."
-            subheading="We connect East Africa's most discerning travellers with a fleet of meticulously maintained aircraft and a crew that puts your time first."
+            subheading="We are an Air Charter and ACMI contract operator that delivers premium quality services to a diverse range of clients across Africa. We primarily operate the versatile Dornier 228 that allows us to cover a wide variety of mission profiles by being ideally suited to challenging operating environments."
             align="left"
           />
 
           <p className="text-white/60 text-base leading-relaxed">
-            Whether it's a same-day executive transfer or a multi-leg safari
-            circuit, Kasas Limited delivers a seamless private aviation
-            experience from wheels-up to touchdown.
+            We have been successfully providing air transport support to the Humanitarian, Relief, Resource and Tourism sectors allover the continent for many years.
           </p>
 
           <div className="flex items-center gap-10 pt-4">
             <div>
-              <p className="text-3xl font-semibold">12+</p>
-              <p className="text-sm text-white/50 mt-1">Aircraft in fleet</p>
+              <p className="text-3xl font-semibold">13</p>
+              <p className="text-sm text-white/50 mt-1">Dornier 228s</p>
             </div>
             <div className="w-px h-10 bg-white/20" />
             <div>
-              <p className="text-3xl font-semibold">50+</p>
-              <p className="text-sm text-white/50 mt-1">Destinations</p>
+              <p className="text-3xl font-semibold">38</p>
+              <p className="text-sm text-white/50 mt-1">Captains & First Officers</p>
             </div>
             <div className="w-px h-10 bg-white/20" />
             <div>
-              <p className="text-3xl font-semibold">8+</p>
-              <p className="text-sm text-white/50 mt-1">Years flying</p>
+              <p className="text-3xl font-semibold">120,000</p>
+              <p className="text-sm text-white/50 mt-1">Flight Hours</p>
             </div>
           </div>
         </motion.div>

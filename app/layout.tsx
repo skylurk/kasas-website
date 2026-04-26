@@ -10,8 +10,8 @@ import { Footer } from "@/components/layout/footer"
 
 export const metadata: Metadata = {
   title: {
-    default: "XYZ Air Charter",
-    template: "%s | XYZ Air Charter",
+    default: "Kasas Limited Air Charter",
+    template: "%s | Kasas Limited Air Charter",
   },
   description: "Private air charter services across East Africa.",
 }

@@ -13,7 +13,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
 
         <Link href="/" className="text-lg font-semibold tracking-tight">
-          XYZ Air
+          Kasas Limited
         </Link>
 
         <nav className="flex items-center gap-6">
@@ -29,7 +29,7 @@ export function Footer() {
         </nav>
 
         <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} XYZ Air Charter. All rights reserved.
+          © {new Date().getFullYear()} Kasas Limited Air Charter. All rights reserved.
         </p>
 
       </div>

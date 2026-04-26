@@ -46,16 +46,13 @@ export function ParallaxBanner() {
         className="relative z-20 bg-black/80 backdrop-blur-sm text-white px-10 py-12 max-w-2xl mx-6 rounded-xl border border-white/10"
       >
         <p className="text-xs font-semibold uppercase tracking-widest text-white/50 mb-4">
-          Our Promise
+          Why Kasas
         </p>
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-snug">
-          Every flight is a direct flight.
-          Every seat is your seat.
-          Every minute is yours.
+          We don’t just operate aircraft — we control the entire system that keeps them flying safely.
         </h2>
         <p className="text-white/60 mt-6 text-base leading-relaxed">
-          No check-in queues. No middle seats. No delays that aren't yours to make.
-          Private aviation isn't a luxury — it's a decision to value your time.
+          Kasas delivers mission-critical aviation across Africa, combining charter, ACMI, training, and in-house maintenance to ensure safe operations in demanding environments. Operating the versatile Dornier 228, they maintain full operational control to provide reliable, rapid-response flights to remote and complex locations.
         </p>
       </motion.div>
 
