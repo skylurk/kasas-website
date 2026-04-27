@@ -18,7 +18,7 @@ import { useTheme } from "next-themes"
 const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "The Dornier 228", href: "/fleet" },
-  { label: "Routes", href: "/routes" },
+  { label: "Safari Charters", href: "/safari-charters" },
   { label: "Contact", href: "/contact" },
 ]
 
@@ -27,7 +27,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
-  const transparentRoutes = ["/", "/about", "/fleet"]
+  const transparentRoutes = ["/", "/about", "/fleet", "/safari-charters"]
   const isHome = transparentRoutes.includes(pathname)
 
   const { resolvedTheme } = useTheme()

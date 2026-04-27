@@ -1,5 +1,6 @@
 import { DornierAvionics } from "@/components/sections/fleet/dornier-avionics"
 import { DornierConfigurations } from "@/components/sections/fleet/dornier-configuration"
+import { DornierCta } from "@/components/sections/fleet/dornier-cta"
 import { DornierHero }      from "@/components/sections/fleet/dornier-hero"
 import { DornierPerformance } from "@/components/sections/fleet/dornier-performance"
 import { DornierSpecs } from "@/components/sections/fleet/dornier-specs"
@@ -19,6 +20,7 @@ export default function Dornier228Page() {
       <DornierAvionics />
       <DornierPerformance />
       <DornierConfigurations />
+      {/* <DornierCta /> */}
     </main>
   )
 }
