@@ -2,11 +2,7 @@
 
 import { motion } from "framer-motion"
 
-interface SafariVideoProps {
-  videoId: string  // YouTube video ID e.g. "dQw4w9WgXcQ"
-}
-
-export function SafariVideo({ videoId }: SafariVideoProps) {
+export function SafariVideo() {
   return (
     <section className="bg-background py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -42,7 +38,7 @@ export function SafariVideo({ videoId }: SafariVideoProps) {
           >
             <div className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl">
               <iframe
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&modestbranding=1&playsinline=1`}
+                src="https://www.youtube.com/embed/AfJSkT7IQP0?autoplay=0&rel=0&modestbranding=1&playsinline=1"
                 title="Kasas Safari Charter Experience"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -83,9 +79,8 @@ export function SafariVideo({ videoId }: SafariVideoProps) {
                   delay: i * 0.1,
                   ease: [0.33, 1, 0.68, 1] as const,
                 }}
-                className="flex gap-5 group"
+                className="flex gap-5"
               >
-                {/* Amber dot */}
                 <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
                 <div className="flex flex-col gap-1.5">
                   <h3 className="text-base font-semibold">{item.title}</h3>

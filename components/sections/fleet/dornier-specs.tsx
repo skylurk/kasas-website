@@ -7,7 +7,7 @@ const specs = [
   { value: "1,300", unit: "mi",  label: "Maximum Range",        code: "PERF-01" },
   { value: "230",   unit: "mph", label: "Cruise Speed",         code: "PERF-02" },
   { value: "19",    unit: "pax", label: "Passenger Capacity",   code: "PERF-03" },
-  { value: "2,690", unit: "ft",  label: "Takeoff Distance",     code: "PERF-04" },
+  { value: "800", unit: "m",  label: "Takeoff Distance",     code: "PERF-04" },
   { value: "6,400", unit: "kg",  label: "Max Takeoff Weight",   code: "PERF-05" },
   { value: "STOL",  unit: "",    label: "Runway Capability",    code: "PERF-06" },
 ]

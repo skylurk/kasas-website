@@ -17,7 +17,8 @@ export default function SafariChartersPage() {
       <SafariAircraft />
       <SafariSplits />
       {/* <SafariVideo videoId="https://www.youtube.com/watch?v=AfJSkT7IQP0" /> */}
-      <SafariVideo videoId="https://www.youtube.com/shorts/AfJSkT7IQP0" />
+      <SafariVideo />
+      {/* <SafariVideo videoId="https://www.youtube.com/shorts/AfJSkT7IQP0" /> */}
     </main>
   )
 }

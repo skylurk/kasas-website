@@ -20,6 +20,7 @@ const navLinks = [
   { label: "The Dornier 228", href: "/fleet" },
   { label: "Safari Charters", href: "/safari-charters" },
   { label: "Contact", href: "/contact" },
+  { label: "Humanitarian Flights", href: "/services/humanitarian-flights" },
 ]
 
 export function Navbar() {
@@ -27,7 +28,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
 
-  const transparentRoutes = ["/", "/about", "/fleet", "/safari-charters"]
+  const transparentRoutes = ["/", "/about", "/fleet", "/safari-charters", "/services/humanitarian-flights"]
   const isHome = transparentRoutes.includes(pathname)
 
   const { resolvedTheme } = useTheme()
