@@ -2,6 +2,7 @@ import { TrainingDornierSim } from "@/components/sections/training/training-dorn
 import { TrainingHero } from "@/components/sections/training/training-hero"
 import { TrainingIntro } from "@/components/sections/training/training-intro"
 import { TrainingSimulators } from "@/components/sections/training/training-simulators"
+import { TrainingThinkAviation } from "@/components/sections/training/training-think-aviation"
 
 export const metadata = {
   title: "Aviation Training",
@@ -10,11 +11,12 @@ export const metadata = {
 
 export default function TrainingPage() {
   return (
-    <main className="bg-black">
+    <main className="">
       <TrainingHero />
       <TrainingIntro />
       <TrainingSimulators />
       <TrainingDornierSim />
+      <TrainingThinkAviation />
     </main>
   )
 }
