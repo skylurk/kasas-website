@@ -27,7 +27,7 @@ export function HeroVideo() {
 
       {/* Poster image — shown until video is ready */}
       <Image
-        src={isMobile ? "/public/images/images/kasas-limited-mobile-hero.webp" : "/public/images/images/kasas-limited-air-charter-services.webp"}
+        src={isMobile ? "/images/images/kasas-limited-mobile-hero.webp" : "/images/images/kasas-limited-air-charter-services.webp"}
         alt=""               // decorative — empty alt is correct here
         fill
         priority             // above fold — always preload

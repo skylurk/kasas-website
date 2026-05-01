@@ -2,7 +2,7 @@ import { HumanitarianCapabilities } from "@/components/sections/humanitarian/hum
 import { HumanitarianHero } from "@/components/sections/humanitarian/humanitarian-hero"
 import { HumanitarianIntro } from "@/components/sections/humanitarian/humanitarian-intro"
 import { HumanitarianServices } from "@/components/sections/humanitarian/humanitarian-services"
-import { HumanitarianParallax } from "@/components/sections/parallax-banner"
+import { HumanitarianParallax } from "@/components/sections/humanitarian/humanitarian-parallax"
 
 export const metadata = {
   title: "Humanitarian Flights",

@@ -24,7 +24,7 @@ const { scrollYProgress } = useScroll({
         className="absolute inset-[-20%] z-0"
       >
         <Image
-          src="/images/humanitarian/humanitarian-parallax.jpg"
+          src="/images/images/humanitarian/dornier-for-humanitarian-charters.jpg"
           alt="Kasas aircraft operating in remote humanitarian field location"
           fill
           className="object-cover object-center"
