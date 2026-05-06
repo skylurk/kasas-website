@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
+import { ArrowUpRight } from "lucide-react"
 
 export function AboutTeamContent() {
   return (
@@ -87,17 +88,28 @@ export function AboutTeamContent() {
           transition={{ duration: 0.7, delay: 0.5, ease: [0.33, 1, 0.68, 1] as const }}
           className="mt-14 flex items-center gap-4"
         >
+          {/* Filled button — dark circle expands on hover */}
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center h-12 px-8 rounded-md bg-white text-black text-sm font-medium hover:bg-white/90 transition-opacity"
+            className="group relative overflow-hidden inline-flex items-center gap-3 h-12 pl-1.5 pr-6 rounded-full bg-white text-black text-sm font-medium transition-colors duration-500 hover:text-white"
           >
-            Request a Quote
+            <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-zinc-900 scale-100 group-hover:scale-[12] transition-transform duration-500 ease-in-out" />
+            <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-900">
+              <ArrowUpRight className="h-4 w-4 text-white" />
+            </span>
+            <span className="relative z-10">Request a Quote</span>
           </Link>
+
+          {/* Outline button — white circle expands on hover */}
           <Link
             href="/team"
-            className="inline-flex items-center justify-center h-12 px-8 rounded-md border border-white/20 text-white text-sm font-medium hover:bg-white/10 transition-colors"
+            className="group relative overflow-hidden inline-flex items-center gap-3 h-12 pl-1.5 pr-6 rounded-full border border-white/30 text-white text-sm font-medium transition-colors duration-500 hover:text-black"
           >
-            Meet the Team
+            <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-white scale-100 group-hover:scale-[12] transition-transform duration-500 ease-in-out" />
+            <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white">
+              <ArrowUpRight className="h-4 w-4 text-black" />
+            </span>
+            <span className="relative z-10">Meet the Team</span>
           </Link>
         </motion.div>
 

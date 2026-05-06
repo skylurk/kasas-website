@@ -10,7 +10,7 @@ import {
   SheetTrigger,
   SheetTitle,
 } from "@/components/ui/sheet"
-import { Menu } from "lucide-react"
+import { Menu, ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { useTheme } from "next-themes"
@@ -18,7 +18,7 @@ import { useTheme } from "next-themes"
 const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "The Dornier 228", href: "/fleet" },
-  { label: "Safari Charters", href: "/safari-charters" },
+  { label: "Safari Charters", href: "/services/safari-charters" },
   { label: "Contact", href: "/contact" },
   { label: "Humanitarian Flights", href: "/services/humanitarian-flights" },
 ]
@@ -26,14 +26,16 @@ const navLinks = [
 export function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
 
-  const transparentRoutes = ["/", "/about", "/fleet", "/safari-charters", "/services/humanitarian-flights"]
+  const transparentRoutes = ["/", "/about", "/fleet", "/services/safari-charters", "/services/humanitarian-flights", "/services/training"]
   const isHome = transparentRoutes.includes(pathname)
 
   const { resolvedTheme } = useTheme()
 
   useEffect(() => {
+    setMounted(true)
     const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
@@ -42,8 +44,10 @@ export function Navbar() {
   // Transparent when: on home page AND hasn't scrolled yet
   const isTransparent = isHome && !scrolled
 
+  // Exclude resolvedTheme until mounted — server always sees it as undefined,
+  // causing a mismatch if the client already has a persisted dark theme.
   const logoSrc =
-    isTransparent || resolvedTheme === "dark"
+    isTransparent || (mounted && resolvedTheme === "dark")
       ? "/images/logos/kasas-limited-white-logo.png"
       : "/images/logos/kasas-limited-black-logo.png"
 
@@ -113,13 +117,31 @@ export function Navbar() {
       <Link
         href="/contact"
         className={cn(
-          "hidden h-10 items-center justify-center rounded-md px-5 text-sm font-medium transition-all duration-500 md:inline-flex",
+          "group hidden relative overflow-hidden h-10 items-center gap-3 rounded-full pl-1.5 pr-5 text-sm font-medium transition-colors duration-500 md:inline-flex",
           isTransparent
-            ? "bg-white text-black hover:bg-white/90"
-            : "bg-primary text-primary-foreground hover:opacity-90"
+            ? "border border-white/50 text-white hover:text-black"
+            : "border border-primary text-primary hover:text-primary-foreground"
         )}
       >
-        Book a Flight
+        {/* expanding circle fill */}
+        <span
+          aria-hidden="true"
+          className={cn(
+            "absolute left-1.5 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full scale-100 group-hover:scale-[10] transition-transform duration-500 ease-in-out",
+            isTransparent ? "bg-white" : "bg-primary"
+          )}
+        />
+        {/* visible circle with icon */}
+        <span className={cn(
+          "relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-500",
+          isTransparent ? "bg-white" : "bg-primary"
+        )}>
+          <ArrowUpRight className={cn(
+            "h-3.5 w-3.5",
+            isTransparent ? "text-black" : "text-primary-foreground"
+          )} />
+        </span>
+        <span className="relative z-10">Book a Flight</span>
       </Link>
 
       {/* Mobile nav */}
@@ -135,40 +157,72 @@ export function Navbar() {
             <Menu className="h-5 w-5" />
           </button>
         </SheetTrigger>
-        <SheetContent side="right" className="flex w-72 flex-col pt-16">
+        <SheetContent side="right" className="flex w-80 flex-col px-8 pt-0 pb-10">
           <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-          <nav className="flex flex-col gap-6">
+
+          {/* Drawer header */}
+          <div className="flex h-20 shrink-0 items-center border-b border-border">
+            <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+              Menu
+            </span>
+          </div>
+
+          {/* Staggered nav links */}
+          <motion.nav
+            className="mt-6 flex flex-col"
+            initial="closed"
+            animate={open ? "open" : "closed"}
+            variants={{ open: { transition: { staggerChildren: 0.07 } }, closed: {} }}
+          >
             {navLinks.map((link) => {
               const isActive = pathname === link.href
               return (
-                <Link
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className={cn(
-                    "text-lg font-medium transition-colors",
-                    isActive
-                      ? "text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
+                  variants={{
+                    open:   { opacity: 1, y: 0 },
+                    closed: { opacity: 0, y: 14 },
+                  }}
+                  transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
                 >
-                  {pathname === link.href && (
-                    <span className="mr-2 text-primary">—</span>
-                  )}
-                  {link.label}
-                </Link>
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      "flex items-center justify-between border-b border-border/50 py-5 text-xl font-medium transition-colors",
+                      isActive
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    {link.label}
+                    {isActive && <ArrowUpRight className="h-4 w-4 shrink-0" />}
+                  </Link>
+                </motion.div>
               )
             })}
-          </nav>
-          <div className="mt-auto pb-8">
+          </motion.nav>
+
+          {/* CTA */}
+          <motion.div
+            className="mt-auto"
+            initial={{ opacity: 0, y: 14 }}
+            animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+            transition={{ duration: 0.4, delay: 0.38, ease: [0.33, 1, 0.68, 1] }}
+          >
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="flex h-12 w-full items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              className="group relative overflow-hidden inline-flex w-full items-center gap-3 h-12 pl-1.5 pr-6 rounded-full bg-primary text-primary-foreground text-sm font-medium transition-colors duration-500"
             >
-              Book a Flight
+              <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-primary-foreground/15 scale-100 group-hover:scale-[12] transition-transform duration-500 ease-in-out" />
+              <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary-foreground/15">
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+              <span className="relative z-10">Book a Flight</span>
             </Link>
-          </div>
+          </motion.div>
+
         </SheetContent>
       </Sheet>
     </motion.header>
