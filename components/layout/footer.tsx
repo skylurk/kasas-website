@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 const footerLinks = [
   { label: "Fleet",   href: "/fleet"   },
@@ -12,8 +13,14 @@ export function Footer() {
     <footer className="border-t border-border mt-auto bg-background">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
 
-        <Link href="/" className="text-lg font-semibold tracking-tight">
-          Kasas Limited
+        <Link href="/">
+          <Image
+            src="/images/logos/kasas-limited-air-charters-original-logo.png"
+            alt="Kasas Limited Air Charters"
+            width={160}
+            height={48}
+            className="object-contain"
+          />
         </Link>
 
         <nav className="flex items-center gap-6">
