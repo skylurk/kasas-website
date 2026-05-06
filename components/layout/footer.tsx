@@ -8,7 +8,7 @@ const companyLinks = [
 ]
 
 const serviceLinks = [
-  { label: "Safari Charters",       href: "/safari-charters"                     },
+  { label: "Safari Charters",       href: "/services/safari-charters"                     },
   { label: "Humanitarian Flights",  href: "/services/humanitarian-flights"        },
   { label: "Aviation Training",     href: "/services/training"                    },
   { label: "Maintenance",           href: "/services/maintenance"                 },
@@ -132,7 +132,7 @@ export function Footer() {
             href="/contact"
             className="group relative overflow-hidden inline-flex items-center gap-3 h-10 pl-1.5 pr-5 rounded-full border border-zinc-700 text-white text-xs font-medium transition-colors duration-500 hover:text-black"
           >
-            <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full bg-white scale-100 group-hover:scale-[10] transition-transform duration-500 ease-in-out" />
+            <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full bg-white scale-100 group-hover:scale-[15] transition-transform duration-500 ease-in-out" />
             <span className="relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-white">
               <svg className="h-3 w-3 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15M19.5 4.5H8.25M19.5 4.5v11.25" />

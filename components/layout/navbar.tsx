@@ -29,7 +29,7 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
 
-  const transparentRoutes = ["/", "/about", "/fleet", "/services/safari-charters", "/services/humanitarian-flights", "/services/training"]
+  const transparentRoutes = ["/", "/about", "/fleet", "/services/safari-charters", "/services/humanitarian-flights", "/services/training", "/contact", "/services/maintenance"]  // routes where navbar starts transparent and becomes solid on scroll
   const isHome = transparentRoutes.includes(pathname)
 
   const { resolvedTheme } = useTheme()
@@ -127,7 +127,7 @@ export function Navbar() {
         <span
           aria-hidden="true"
           className={cn(
-            "absolute left-1.5 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full scale-100 group-hover:scale-[10] transition-transform duration-500 ease-in-out",
+            "absolute left-1.5 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full scale-100 group-hover:scale-[15] transition-transform duration-500 ease-in-out",
             isTransparent ? "bg-white" : "bg-primary"
           )}
         />
@@ -215,7 +215,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className="group relative overflow-hidden inline-flex w-full items-center gap-3 h-12 pl-1.5 pr-6 rounded-full bg-primary text-primary-foreground text-sm font-medium transition-colors duration-500"
             >
-              <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-primary-foreground/15 scale-100 group-hover:scale-[12] transition-transform duration-500 ease-in-out" />
+              <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-primary-foreground/15 scale-100 group-hover:scale-[20] transition-transform duration-500 ease-in-out" />
               <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary-foreground/15">
                 <ArrowUpRight className="h-4 w-4" />
               </span>

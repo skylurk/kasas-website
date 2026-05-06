@@ -146,10 +146,10 @@ export function DornierCta() {
           <span className="hidden h-4 w-px bg-white/10 sm:block" />
 
           <a
-            href="mailto:ops@kasaslimited.com"
+            href="mailto:ops@kasaskenya.com"
             className="font-mono text-xs text-white/30 transition-colors duration-300 hover:text-white/60"
           >
-            OPS@KASASLIMITED.COM
+            OPS@kasaskenya.com
           </a>
 
           <span className="hidden h-4 w-px bg-white/10 sm:block" />
