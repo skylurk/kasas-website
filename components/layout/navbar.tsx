@@ -19,8 +19,8 @@ const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "The Dornier 228", href: "/fleet" },
   { label: "Safari Charters", href: "/services/safari-charters" },
-  { label: "Contact", href: "/contact" },
   { label: "Humanitarian Flights", href: "/services/humanitarian-flights" },
+  { label: "Contact", href: "/contact" },
 ]
 
 export function Navbar() {
@@ -57,10 +57,10 @@ export function Navbar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
-        "fixed inset-x-0 top-0 z-50 flex h-20 items-center justify-between px-6 transition-all duration-500 md:px-12",
+        "fixed z-50 flex items-center justify-between transition-all duration-500",
         isTransparent
-          ? "border-transparent bg-transparent"
-          : "border-b border-border bg-background/80 backdrop-blur-sm"
+          ? "inset-x-3 top-3 md:inset-x-6 md:top-4 h-14 px-3 md:px-5 rounded-full bg-black/25 backdrop-blur-md border border-white/10"
+          : "inset-x-0 top-0 h-20 px-6 md:px-12 border-b border-border bg-background/80 backdrop-blur-sm"
       )}
     >
       {/* Logo */}
@@ -84,14 +84,14 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "relative text-sm transition-colors duration-500",
+                "relative text-sm font-semibold transition-colors duration-500",
                 isTransparent
                   ? isActive
-                    ? "font-medium text-white"
-                    : "text-white/70 hover:text-white"
+                    ? "text-white"
+                    : "text-white/80 hover:text-white"
                   : isActive
-                    ? "font-medium text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-foreground"
+                    : "text-foreground/70 hover:text-foreground"
               )}
             >
               {link.label}
