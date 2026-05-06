@@ -14,6 +14,7 @@ import { Menu, ArrowUpRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { useTheme } from "next-themes"
+import { ContactForm } from "@/components/sections/contact/contact-form"
 
 const navLinks = [
   { label: "About Us", href: "/about" },
@@ -25,6 +26,7 @@ const navLinks = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
+  const [formOpen, setFormOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
@@ -114,8 +116,8 @@ export function Navbar() {
       </nav>
 
       {/* Desktop CTA */}
-      <Link
-        href="/contact"
+      <button
+        onClick={() => setFormOpen(true)}
         className={cn(
           "group hidden relative overflow-hidden h-10 items-center gap-3 rounded-full pl-1.5 pr-5 text-sm font-medium transition-colors duration-500 md:inline-flex",
           isTransparent
@@ -123,7 +125,6 @@ export function Navbar() {
             : "border border-primary text-primary hover:text-primary-foreground"
         )}
       >
-        {/* expanding circle fill */}
         <span
           aria-hidden="true"
           className={cn(
@@ -131,7 +132,6 @@ export function Navbar() {
             isTransparent ? "bg-white" : "bg-primary"
           )}
         />
-        {/* visible circle with icon */}
         <span className={cn(
           "relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-500",
           isTransparent ? "bg-white" : "bg-primary"
@@ -142,7 +142,7 @@ export function Navbar() {
           )} />
         </span>
         <span className="relative z-10">Book a Flight</span>
-      </Link>
+      </button>
 
       {/* Mobile nav */}
       <Sheet open={open} onOpenChange={setOpen}>
@@ -210,9 +210,8 @@ export function Navbar() {
             animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             transition={{ duration: 0.4, delay: 0.38, ease: [0.33, 1, 0.68, 1] }}
           >
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
+            <button
+              onClick={() => { setOpen(false); setFormOpen(true) }}
               className="group relative overflow-hidden inline-flex w-full items-center gap-3 h-12 pl-1.5 pr-6 rounded-full bg-primary text-primary-foreground text-sm font-medium transition-colors duration-500"
             >
               <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-primary-foreground/15 scale-100 group-hover:scale-[20] transition-transform duration-500 ease-in-out" />
@@ -220,11 +219,13 @@ export function Navbar() {
                 <ArrowUpRight className="h-4 w-4" />
               </span>
               <span className="relative z-10">Book a Flight</span>
-            </Link>
+            </button>
           </motion.div>
 
         </SheetContent>
       </Sheet>
+
+      <ContactForm open={formOpen} onOpenChange={setFormOpen} />
     </motion.header>
   )
 }

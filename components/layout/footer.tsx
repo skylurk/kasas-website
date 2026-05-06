@@ -1,5 +1,9 @@
+"use client"
+
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { ContactForm } from "@/components/sections/contact/contact-form"
 
 const companyLinks = [
   { label: "About Us",  href: "/about"   },
@@ -45,7 +49,10 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const [formOpen, setFormOpen] = useState(false)
+
   return (
+    <>
     <footer className="bg-zinc-950 text-white">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
@@ -128,8 +135,8 @@ export function Footer() {
           <p className="text-xs text-zinc-500" suppressHydrationWarning>
             © {new Date().getFullYear()} Kasas Limited Air Charter. All rights reserved.
           </p>
-          <Link
-            href="/contact"
+          <button
+            onClick={() => setFormOpen(true)}
             className="group relative overflow-hidden inline-flex items-center gap-3 h-10 pl-1.5 pr-5 rounded-full border border-zinc-700 text-white text-xs font-medium transition-colors duration-500 hover:text-black"
           >
             <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full bg-white scale-100 group-hover:scale-[15] transition-transform duration-500 ease-in-out" />
@@ -139,10 +146,13 @@ export function Footer() {
               </svg>
             </span>
             <span className="relative z-10">Book a Flight</span>
-          </Link>
+          </button>
         </div>
 
       </div>
     </footer>
+
+    <ContactForm open={formOpen} onOpenChange={setFormOpen} />
+  </>
   )
 }
