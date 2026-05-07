@@ -224,7 +224,7 @@ export function DornierPerformance() {
               </div>
               <div className="w-px h-8 bg-white/10" />
               <div>
-                <p className="text-2xl font-semibold text-white">2,268<span className="text-red-500/70 text-sm font-mono ml-1">kg</span></p>
+                <p className="text-2xl font-semibold text-white">1,800<span className="text-red-500/70 text-sm font-mono ml-1">kg</span></p>
                 <p className="text-xs text-white/30 uppercase tracking-widest mt-0.5">Max payload</p>
               </div>
               <div className="w-px h-8 bg-white/10" />

@@ -17,8 +17,8 @@ const capabilities = [
   { label: "Digital Weather Radar",                code: "AV-02" },
   { label: "EGPWS",                                code: "AV-03" },
   { label: "TCAS II v7.1",                         code: "AV-04" },
-  { label: "Dual GPS",                             code: "AV-05" },
-  { label: "DFDR + CVR",                           code: "AV-06" },
+  { label: "Dual Moving Map GPS",                             code: "AV-05" },
+  { label: "SSCVR/SSFDR",                           code: "AV-06" },
   { label: "Satellite Tracking",                   code: "AV-07" },
   { label: "Satcom",                               code: "AV-08" },
 ]

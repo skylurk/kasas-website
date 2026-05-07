@@ -7,14 +7,14 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const images = [
-  { src: "/images/images/about/gallery/kasas-limited-air-charters.webp",  alt: "Captain conducting pre-flight briefing",          span: "col-span-2 row-span-2" },
-  { src: "/images/images/about/gallery/kasas-limited-aviation-engineering-techs.webp",  alt: "Ground crew preparing aircraft for departure",    span: "col-span-1 row-span-1" },
-  { src: "/images/images/about/gallery/kasas-limited-aviation-maint-crew.webp",  alt: "Maintenance engineer inspecting Dornier 228",     span: "col-span-1 row-span-1" },
-  { src: "/images/images/about/gallery/kasas-limited-aviation-operations-team.webp",  alt: "Pilot in cockpit over East African landscape",    span: "col-span-1 row-span-2" },
-  { src: "/images/images/about/gallery/kasas-limited-aviation-ops.webp",  alt: "Team celebrating safety milestone on tarmac",     span: "col-span-2 row-span-1" },
-  { src: "/images/images/about/gallery/kasas-limited-aviation-quality-charters.webp",  alt: "Medical evacuation team loading aircraft",        span: "col-span-1 row-span-1" },
-  { src: "/images/images/about/gallery/kasas-limited-aviation-techs.webp",  alt: "Safari charter passengers boarding aircraft",     span: "col-span-1 row-span-1" },
-  { src: "/images/images/about/gallery/kasas-limited-aviation-training.webp",  alt: "Aerial view of Kasas fleet on Nairobi apron",    span: "col-span-2 row-span-1" },
+  { src: "/images/images/about/gallery/kasas-limited-air-charters.webp",  alt: "Tech records updating manuals",          span: "col-span-2 row-span-2" },
+  { src: "/images/images/about/gallery/kasas-limited-aviation-engineering-techs.webp",  alt: "Engine technician working on aircraft systems",    span: "col-span-1 row-span-1" },
+  { src: "/images/images/about/gallery/kasas-limited-aviation-maint-crew.webp",  alt: "Maintenance team conducting scheduled repairs",     span: "col-span-1 row-span-1" },
+  { src: "/images/images/about/gallery/kasas-limited-aviation-operations-team.webp",  alt: "Operations team coordinating flight schedules",    span: "col-span-1 row-span-2" },
+  { src: "/images/images/about/gallery/kasas-limited-aviation-ops.webp",  alt: "Ops team mapping out flight routes",     span: "col-span-2 row-span-1" },
+  { src: "/images/images/about/gallery/kasas-limited-aviation-quality-charters.webp",  alt: "Stores team ensuring qulity parts are delivered",        span: "col-span-1 row-span-1" },
+  { src: "/images/images/about/gallery/kasas-limited-aviation-techs.webp",  alt: "Aircraft technician working on avionics systems",     span: "col-span-1 row-span-1" },
+  { src: "/images/images/about/gallery/kasas-limited-aviation-training.webp",  alt: "Simulator technician setting up for a training session",    span: "col-span-2 row-span-1" },
   { src: "/images/images/about/gallery/kasas-limited-avionics-crew.webp",  alt: "A view of the kasas limited crew",    span: "col-span-2 row-span-1" },
   { src: "/images/images/about/gallery/kasas-limited-ssimulators-training.webp",  alt: "Training on the simulators ongoing",    span: "col-span-2 row-span-1" },
 ]

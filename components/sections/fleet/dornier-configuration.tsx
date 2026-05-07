@@ -23,8 +23,8 @@ const configurations = [
   },
   {
     code:     "CFG-03",
-    title:    "Combined",
-    capacity: "Mixed pax + cargo",
+    title:    "Combi Cargo",
+    capacity: "Mixed pax + cargo", 
     body:     "A flexible split configuration carrying both passengers and freight simultaneously — perfect for resupply missions into remote locations.",
     imageSrc: "/images/images/fleet/fleet-images/kasas-limited-dornier-combined.webp",
     imageAlt: "Dornier 228 combined passenger and cargo configuration",
