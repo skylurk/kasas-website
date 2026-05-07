@@ -31,7 +31,17 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
 
-  const transparentRoutes = ["/", "/about", "/fleet", "/services/safari-charters", "/services/humanitarian-flights", "/services/training", "/contact", "/services/maintenance"]  // routes where navbar starts transparent and becomes solid on scroll
+  const transparentRoutes = [
+    "/",
+    "/about",
+    "/fleet",
+    "/services/safari-charters",
+    "/services/humanitarian-flights",
+    "/services/training",
+    "/contact",
+    "/services/maintenance",
+    "/team"
+  ] // routes where navbar starts transparent and becomes solid on scroll
   const isHome = transparentRoutes.includes(pathname)
 
   const { resolvedTheme } = useTheme()
@@ -61,8 +71,8 @@ export function Navbar() {
       className={cn(
         "fixed z-50 flex items-center justify-between transition-all duration-500",
         isTransparent
-          ? "inset-x-3 top-3 md:inset-x-6 md:top-4 h-14 px-3 md:px-5 rounded-full bg-black/25 backdrop-blur-md border border-white/10"
-          : "inset-x-0 top-0 h-20 px-6 md:px-12 border-b border-border bg-background/80 backdrop-blur-sm"
+          ? "inset-x-3 top-3 h-14 rounded-full border border-white/10 bg-black/25 px-3 backdrop-blur-md md:inset-x-6 md:top-4 md:px-5"
+          : "inset-x-0 top-0 h-20 border-b border-border bg-background/80 px-6 backdrop-blur-sm md:px-12"
       )}
     >
       {/* Logo */}
@@ -119,7 +129,7 @@ export function Navbar() {
       <button
         onClick={() => setFormOpen(true)}
         className={cn(
-          "group hidden relative overflow-hidden h-10 items-center gap-3 rounded-full pl-1.5 pr-5 text-sm font-medium transition-colors duration-500 md:inline-flex",
+          "group relative hidden h-10 items-center gap-3 overflow-hidden rounded-full pr-5 pl-1.5 text-sm font-medium transition-colors duration-500 md:inline-flex",
           isTransparent
             ? "border border-white/50 text-white hover:text-black"
             : "border border-primary text-primary hover:text-primary-foreground"
@@ -128,18 +138,22 @@ export function Navbar() {
         <span
           aria-hidden="true"
           className={cn(
-            "absolute left-1.5 top-1/2 -translate-y-1/2 h-7 w-7 rounded-full scale-100 group-hover:scale-[15] transition-transform duration-500 ease-in-out",
+            "absolute top-1/2 left-1.5 h-7 w-7 -translate-y-1/2 scale-100 rounded-full transition-transform duration-500 ease-in-out group-hover:scale-[15]",
             isTransparent ? "bg-white" : "bg-primary"
           )}
         />
-        <span className={cn(
-          "relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-500",
-          isTransparent ? "bg-white" : "bg-primary"
-        )}>
-          <ArrowUpRight className={cn(
-            "h-3.5 w-3.5",
-            isTransparent ? "text-black" : "text-primary-foreground"
-          )} />
+        <span
+          className={cn(
+            "relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-500",
+            isTransparent ? "bg-white" : "bg-primary"
+          )}
+        >
+          <ArrowUpRight
+            className={cn(
+              "h-3.5 w-3.5",
+              isTransparent ? "text-black" : "text-primary-foreground"
+            )}
+          />
         </span>
         <span className="relative z-10">Book a Flight</span>
       </button>
@@ -157,12 +171,15 @@ export function Navbar() {
             <Menu className="h-5 w-5" />
           </button>
         </SheetTrigger>
-        <SheetContent side="right" className="flex w-80 flex-col px-8 pt-0 pb-10">
+        <SheetContent
+          side="right"
+          className="flex w-80 flex-col px-8 pt-0 pb-10"
+        >
           <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
 
           {/* Drawer header */}
           <div className="flex h-20 shrink-0 items-center border-b border-border">
-            <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+            <span className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
               Menu
             </span>
           </div>
@@ -172,7 +189,10 @@ export function Navbar() {
             className="mt-6 flex flex-col"
             initial="closed"
             animate={open ? "open" : "closed"}
-            variants={{ open: { transition: { staggerChildren: 0.07 } }, closed: {} }}
+            variants={{
+              open: { transition: { staggerChildren: 0.07 } },
+              closed: {},
+            }}
           >
             {navLinks.map((link) => {
               const isActive = pathname === link.href
@@ -180,7 +200,7 @@ export function Navbar() {
                 <motion.div
                   key={link.href}
                   variants={{
-                    open:   { opacity: 1, y: 0 },
+                    open: { opacity: 1, y: 0 },
                     closed: { opacity: 0, y: 14 },
                   }}
                   transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
@@ -208,20 +228,29 @@ export function Navbar() {
             className="mt-auto"
             initial={{ opacity: 0, y: 14 }}
             animate={open ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
-            transition={{ duration: 0.4, delay: 0.38, ease: [0.33, 1, 0.68, 1] }}
+            transition={{
+              duration: 0.4,
+              delay: 0.38,
+              ease: [0.33, 1, 0.68, 1],
+            }}
           >
             <button
-              onClick={() => { setOpen(false); setFormOpen(true) }}
-              className="group relative overflow-hidden inline-flex w-full items-center gap-3 h-12 pl-1.5 pr-6 rounded-full bg-primary text-primary-foreground text-sm font-medium transition-colors duration-500"
+              onClick={() => {
+                setOpen(false)
+                setFormOpen(true)
+              }}
+              className="group relative inline-flex h-12 w-full items-center gap-3 overflow-hidden rounded-full bg-primary pr-6 pl-1.5 text-sm font-medium text-primary-foreground transition-colors duration-500"
             >
-              <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-primary-foreground/15 scale-100 group-hover:scale-[20] transition-transform duration-500 ease-in-out" />
+              <span
+                aria-hidden="true"
+                className="absolute top-1/2 left-1.5 h-9 w-9 -translate-y-1/2 scale-100 rounded-full bg-primary-foreground/15 transition-transform duration-500 ease-in-out group-hover:scale-[20]"
+              />
               <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary-foreground/15">
                 <ArrowUpRight className="h-4 w-4" />
               </span>
               <span className="relative z-10">Book a Flight</span>
             </button>
           </motion.div>
-
         </SheetContent>
       </Sheet>
 

@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { CheckCircle } from "lucide-react"
+import { CheckCircle, ArrowUpRight } from "lucide-react"
 
 interface ContactFormProps {
   open:          boolean
@@ -291,21 +291,27 @@ export function ContactForm({ open, onOpenChange }: ContactFormProps) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full inline-flex items-center justify-center h-12 px-8 rounded-md text-white text-sm font-medium transition-opacity duration-300 disabled:opacity-70"
+                    className="group relative overflow-hidden inline-flex w-full items-center gap-3 h-12 pl-1.5 pr-6 rounded-full text-white text-sm font-medium transition-colors duration-500 disabled:opacity-70 cursor-pointer"
                     style={{ backgroundColor: "#595B5C" }}
                   >
-                    {loading ? (
-                      <span className="flex items-center gap-2">
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-white/15 scale-100 group-hover:scale-[50] transition-transform duration-500 ease-in-out"
+                    />
+                    <span className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15">
+                      {loading ? (
                         <motion.span
                           animate={{ rotate: 360 }}
                           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                           className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
                         />
-                        Sending...
-                      </span>
-                    ) : (
-                      "Send Enquiry"
-                    )}
+                      ) : (
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      )}
+                    </span>
+                    <span className="relative z-10">
+                      {loading ? "Sending..." : "Send Enquiry"}
+                    </span>
                   </button>
                 </motion.div>
 
