@@ -135,7 +135,7 @@ export function MaintenanceHero() {
             {/* CTAs */}
             <div className="flex items-center gap-4 pt-2">
               {/* Filled button — dark circle expands on hover */}
-              <Link
+              {/* <Link
                 href="/contact"
                 className="group relative overflow-hidden inline-flex items-center gap-3 h-12 pl-1.5 pr-6 rounded-full text-white text-sm font-medium transition-colors duration-500"
                 style={{ backgroundColor: "#595B5C" }}
@@ -145,7 +145,7 @@ export function MaintenanceHero() {
                   <ArrowUpRight className="h-4 w-4 text-white" />
                 </span>
                 <span className="relative z-10">Request Maintenance</span>
-              </Link>
+              </Link> */}
 
               {/* Outline button — white circle expands on hover */}
               <Link

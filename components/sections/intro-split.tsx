@@ -38,7 +38,7 @@ export function IntroSplit() {
             align="left"
           />
 
-          <p className="text-white/60 text-base leading-relaxed">
+          <p className="text-white/90 text-base leading-relaxed">
             We have been successfully providing air transport support to the Humanitarian, Relief, Resource and Tourism sectors allover the continent for many years.
           </p>
 

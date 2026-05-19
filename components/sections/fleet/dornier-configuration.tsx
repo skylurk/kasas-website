@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { useFleetTheme } from "./fleet-theme-context"
 
 const configurations = [
   {
@@ -24,7 +24,7 @@ const configurations = [
   {
     code:     "CFG-03",
     title:    "Combi Cargo",
-    capacity: "Mixed pax + cargo", 
+    capacity: "Mixed pax + cargo",
     body:     "A flexible split configuration carrying both passengers and freight simultaneously — perfect for resupply missions into remote locations.",
     imageSrc: "/images/images/fleet/fleet-images/kasas-limited-dornier-combined.webp",
     imageAlt: "Dornier 228 combined passenger and cargo configuration",
@@ -32,8 +32,24 @@ const configurations = [
 ]
 
 export function DornierConfigurations() {
+  const { dark } = useFleetTheme()
+
+  const t = {
+    section:    dark ? "bg-black border-white/10" : "bg-white border-black/10",
+    heading:    dark ? "text-white" : "text-gray-900",
+    ref:        dark ? "text-white/40" : "text-gray-300",
+    cardBorder: dark ? "border-white/10 hover:border-red-500/40" : "border-black/10 hover:border-red-500/40",
+    cardBg:     dark ? "bg-black" : "bg-white",
+    cardTitle:  dark ? "text-white" : "text-gray-900",
+    cardBody:   dark ? "text-white/55" : "text-gray-500",
+    footnote:   dark ? "text-white/25" : "text-gray-300",
+  }
+
   return (
-    <section className="bg-black border-t border-white/10 py-24 md:py-32 overflow-hidden">
+    <section
+      className={`${t.section} border-t py-24 md:py-32 overflow-hidden`}
+      style={{ transition: "background-color 0.4s ease" }}
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* Header */}
@@ -47,7 +63,7 @@ export function DornierConfigurations() {
             <p className="text-xs font-semibold uppercase tracking-widest text-red-500/70 mb-3">
               Cabin Flexibility
             </p>
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">
+            <h2 className={`text-4xl md:text-5xl font-semibold tracking-tight ${t.heading}`}>
               Three Configurations
             </h2>
           </motion.div>
@@ -56,7 +72,7 @@ export function DornierConfigurations() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/20 text-xs font-mono hidden md:block"
+            className={`${t.ref} text-xs font-mono hidden md:block`}
           >
             REF: KL-D228-CFG / REV-01
           </motion.p>
@@ -79,15 +95,11 @@ export function DornierConfigurations() {
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.7,
-                delay: i * 0.12,
-                ease: [0.33, 1, 0.68, 1] as const,
-              }}
-              className="group relative border border-white/10 rounded-xl overflow-hidden hover:border-red-500/40 transition-colors duration-500"
+              transition={{ duration: 0.7, delay: i * 0.12, ease: [0.33, 1, 0.68, 1] as const }}
+              className={`group relative border ${t.cardBorder} rounded-xl overflow-hidden transition-colors duration-500`}
             >
               {/* Image */}
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-4/3 overflow-hidden">
                 <div
                   className="absolute inset-0 z-10 opacity-10"
                   style={{
@@ -105,33 +117,26 @@ export function DornierConfigurations() {
                   className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-20" />
+                <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent z-20" />
 
-                {/* Corner brackets */}
                 <span className="absolute top-3 left-3 z-30 w-3 h-3 border-t border-l border-red-500/50" />
                 <span className="absolute top-3 right-3 z-30 w-3 h-3 border-t border-r border-red-500/50" />
-
-                {/* Config code */}
                 <span className="absolute top-4 left-1/2 -translate-x-1/2 z-30 text-red-500/40 text-xs font-mono">
                   {config.code}
                 </span>
               </div>
 
               {/* Content */}
-              <div className="bg-black px-6 py-6 flex flex-col gap-3">
+              <div className={`${t.cardBg} px-6 py-6 flex flex-col gap-3`}>
                 <div className="flex items-center justify-between">
-                  <h3 className="text-white text-lg font-semibold tracking-tight">
+                  <h3 className={`${t.cardTitle} text-lg font-semibold tracking-tight`}>
                     {config.title}
                   </h3>
                   <span className="text-red-500/60 text-xs font-mono border border-red-500/20 px-2 py-0.5 rounded">
                     {config.capacity}
                   </span>
                 </div>
-                <p className="text-white/40 text-sm leading-relaxed">
-                  {config.body}
-                </p>
-
-                {/* Bottom red line on hover */}
+                <p className={`${t.cardBody} text-sm leading-relaxed`}>{config.body}</p>
                 <div className="h-px bg-red-500/0 group-hover:bg-red-500/40 transition-colors duration-500 mt-2" />
               </div>
 
@@ -145,7 +150,7 @@ export function DornierConfigurations() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-white/20 text-xs font-mono mt-8 text-center"
+          className={`${t.footnote} text-xs font-mono mt-8 text-center`}
         >
           CONFIGURATION CHANGES COMPLETED ON THE GROUND BY KASAS GROUND CREW — TYPICAL TURNAROUND: 45 MIN
         </motion.p>

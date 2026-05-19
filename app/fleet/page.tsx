@@ -1,10 +1,4 @@
-import { DornierAvionics } from "@/components/sections/fleet/dornier-avionics"
-import { DornierConfigurations } from "@/components/sections/fleet/dornier-configuration"
-import { DornierCta } from "@/components/sections/fleet/dornier-cta"
-import { DornierHero }      from "@/components/sections/fleet/dornier-hero"
-import { DornierPerformance } from "@/components/sections/fleet/dornier-performance"
-import { DornierSpecs } from "@/components/sections/fleet/dornier-specs"
-import { DornierThreeView } from "@/components/sections/fleet/dornier-three-view"
+import { FleetPage } from "@/components/sections/fleet/fleet-page"
 
 export const metadata = {
   title: "Dornier 228",
@@ -12,15 +6,5 @@ export const metadata = {
 }
 
 export default function Dornier228Page() {
-  return (
-    <main className="bg-black">
-      <DornierHero />
-      <DornierThreeView />
-      <DornierSpecs />
-      <DornierAvionics />
-      <DornierPerformance />
-      <DornierConfigurations />
-      {/* <DornierCta /> */}
-    </main>
-  )
+  return <FleetPage />
 }

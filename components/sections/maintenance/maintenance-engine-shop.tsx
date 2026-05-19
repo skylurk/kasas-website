@@ -266,7 +266,7 @@ export function MaintenanceEngineShop() {
             </div>
 
             {/* CTA */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -284,7 +284,7 @@ export function MaintenanceEngineShop() {
                 </span>
                 <span className="relative z-10">Enquire About Engine Work</span>
               </Link>
-            </motion.div>
+            </motion.div> */}
 
           </motion.div>
         </div>

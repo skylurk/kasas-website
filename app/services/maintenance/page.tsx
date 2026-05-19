@@ -22,7 +22,7 @@ export default function MaintenancePage() {
       <MaintenanceEngineShop />
       <MaintenanceFacilities />
       <MaintenanceClients />
-      <MaintenanceCta />
+      {/* <MaintenanceCta /> */}
     </main>
   )
 }

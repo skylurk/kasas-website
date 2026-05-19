@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
+import { useFleetTheme } from "./fleet-theme-context"
 
 const systems = [
   {
@@ -37,8 +38,25 @@ const systems = [
 ]
 
 export function DornierAvionics() {
+  const { dark } = useFleetTheme()
+
+  const t = {
+    section:    dark ? "bg-black border-white/10" : "bg-white border-black/10",
+    heading:    dark ? "text-white" : "text-gray-900",
+    ref:        dark ? "text-white/40" : "text-gray-300",
+    imgBorder:  dark ? "border-white/10" : "border-black/10",
+    caption:    dark ? "text-white/35" : "text-gray-400",
+    rowBorder:  dark ? "border-white/10" : "border-black/10",
+    rowHover:   dark ? "hover:bg-white/5" : "hover:bg-black/5",
+    sysTitle:   dark ? "text-white" : "text-gray-900",
+    sysBody:    dark ? "text-white/60" : "text-gray-500",
+  }
+
   return (
-    <section className="bg-black border-t border-white/10 py-24 md:py-32 overflow-hidden">
+    <section
+      className={`${t.section} border-t py-24 md:py-32 overflow-hidden`}
+      style={{ transition: "background-color 0.4s ease" }}
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* Header */}
@@ -52,7 +70,7 @@ export function DornierAvionics() {
             <p className="text-xs font-semibold uppercase tracking-widest text-red-500/70 mb-3">
               Avionics Suite
             </p>
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">
+            <h2 className={`text-4xl md:text-5xl font-semibold tracking-tight ${t.heading}`}>
               Built for Any Condition
             </h2>
           </motion.div>
@@ -61,7 +79,7 @@ export function DornierAvionics() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-white/20 text-xs font-mono hidden md:block"
+            className={`${t.ref} text-xs font-mono hidden md:block`}
           >
             REF: KL-D228-AV / REV-02
           </motion.p>
@@ -87,9 +105,8 @@ export function DornierAvionics() {
             transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] as const }}
             className="relative"
           >
-            {/* Sticky on desktop so image stays visible while systems scroll */}
             <div className="md:sticky md:top-28">
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden border border-white/10">
+              <div className={`relative aspect-4/3 rounded-xl overflow-hidden border ${t.imgBorder}`}>
 
                 {/* Graph paper overlay */}
                 <div
@@ -118,14 +135,12 @@ export function DornierAvionics() {
                 <span className="absolute bottom-3 right-3 z-20 w-4 h-4 border-b-2 border-r-2 border-red-500/60" />
               </div>
 
-              {/* Image caption */}
+              {/* Caption */}
               <div className="flex items-center justify-between mt-3 px-1">
-                <p className="text-white/30 text-xs font-mono">
+                <p className={`${t.caption} text-xs font-mono`}>
                   FIG. 01 — COCKPIT INSTRUMENT PANEL
                 </p>
-                <p className="text-red-500/40 text-xs font-mono">
-                  D228 / KL
-                </p>
+                <p className="text-red-500/40 text-xs font-mono">D228 / KL</p>
               </div>
             </div>
           </motion.div>
@@ -138,25 +153,17 @@ export function DornierAvionics() {
                 initial={{ opacity: 0, x: 24 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: i * 0.08,
-                  ease: [0.33, 1, 0.68, 1] as const,
-                }}
-                className="group border-b border-white/10 py-6 flex gap-5 hover:bg-white/5 transition-colors duration-300 px-4 -mx-4 rounded-lg cursor-default"
+                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.33, 1, 0.68, 1] as const }}
+                className={`group border-b ${t.rowBorder} py-6 flex gap-5 ${t.rowHover} transition-colors duration-300 px-4 -mx-4 rounded-lg cursor-default`}
               >
-                {/* Code */}
                 <span className="text-red-500/40 text-xs font-mono mt-1 shrink-0 w-12">
                   {sys.code}
                 </span>
-
                 <div className="flex flex-col gap-1.5">
-                  <h3 className="text-white text-sm font-semibold tracking-wide group-hover:text-red-400 transition-colors duration-300">
+                  <h3 className={`${t.sysTitle} text-sm font-semibold tracking-wide group-hover:text-red-400 transition-colors duration-300`}>
                     {sys.title}
                   </h3>
-                  <p className="text-white/40 text-sm leading-relaxed">
-                    {sys.body}
-                  </p>
+                  <p className={`${t.sysBody} text-sm leading-relaxed`}>{sys.body}</p>
                 </div>
               </motion.div>
             ))}

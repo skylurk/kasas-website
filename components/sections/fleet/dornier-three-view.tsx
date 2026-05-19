@@ -3,37 +3,56 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { useFleetTheme } from "./fleet-theme-context"
 
 const views = [
   {
-    src:     "/images/images/fleet/kasas-dornier-front-profile.png",
-    alt:     "Dornier 228 front view technical drawing",
-    label:   "Front View",
-    code:    "VIEW-01",
-    note:    "Twin turboprop engines with STOL wing profile",
-    aspect:  "aspect-square",
+    src:    "/images/images/fleet/kasas-dornier-front-profile.png",
+    alt:    "Dornier 228 front view technical drawing",
+    label:  "Front View",
+    code:   "VIEW-01",
+    note:   "Twin turboprop engines with STOL wing profile",
+    aspect: "aspect-square",
   },
   {
-    src:     "/images/images/fleet/kasas-dornier-side-profile.png",
-    alt:     "Dornier 228 side profile technical drawing",
-    label:   "Side Profile",
-    code:    "VIEW-02",
-    note:    "19-seat cabin / large rear cargo door",
-    aspect:  "aspect-square",
+    src:    "/images/images/fleet/kasas-dornier-side-profile.png",
+    alt:    "Dornier 228 side profile technical drawing",
+    label:  "Side Profile",
+    code:   "VIEW-02",
+    note:   "19-seat cabin / large rear cargo door",
+    aspect: "aspect-square",
   },
   {
-    src:     "/images/images/fleet/kasas-dornier-top-profile.png",
-    alt:     "Dornier 228 top-down technical drawing",
-    label:   "Top View",
-    code:    "VIEW-03",
-    note:    "Low-drag TNT wing — new generation design",
-    aspect:  "aspect-square",
+    src:    "/images/images/fleet/kasas-dornier-top-profile.png",
+    alt:    "Dornier 228 top-down technical drawing",
+    label:  "Top View",
+    code:   "VIEW-03",
+    note:   "Low-drag TNT wing — new generation design",
+    aspect: "aspect-square",
   },
 ]
 
 export function DornierThreeView() {
+  const { dark } = useFleetTheme()
+
+  const t = {
+    section:    dark ? "bg-black border-white/10" : "bg-white border-black/10",
+    heading:    dark ? "text-white" : "text-gray-900",
+    sub:        dark ? "text-white/50" : "text-gray-400",
+    cardBorder: dark ? "border-white/10 hover:border-red-500/40" : "border-black/10 hover:border-red-500/40",
+    cardBg:     dark ? "bg-black/60" : "bg-black/[0.02]",
+    footerBdr:  dark ? "border-white/10" : "border-black/10",
+    cardLabel:  dark ? "text-white" : "text-gray-900",
+    cardNote:   dark ? "text-white/40" : "text-gray-400",
+    bottomRef:  dark ? "text-white/20" : "text-gray-300",
+    imgClass:   dark ? "" : "invert",
+  }
+
   return (
-    <section className="bg-black border-t border-white/10 py-24 md:py-32 overflow-hidden">
+    <section
+      className={`${t.section} border-t py-24 md:py-32 overflow-hidden`}
+      style={{ transition: "background-color 0.4s ease" }}
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* Header */}
@@ -47,7 +66,7 @@ export function DornierThreeView() {
             <p className="text-xs font-semibold uppercase tracking-widest text-red-500/70 mb-3">
               Technical Reference
             </p>
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white">
+            <h2 className={`text-4xl md:text-5xl font-semibold tracking-tight ${t.heading}`}>
               Three-View Drawing
             </h2>
           </motion.div>
@@ -57,14 +76,14 @@ export function DornierThreeView() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.33, 1, 0.68, 1] as const }}
-            className="text-white/40 text-sm max-w-xs text-right font-mono leading-relaxed hidden md:block"
+            className={`${t.sub} text-sm max-w-xs text-right font-mono leading-relaxed hidden md:block`}
           >
             DORNIER 228 / TYPE 212 <br />
             KASAS LIMITED REF: KL-D228
           </motion.p>
         </div>
 
-        {/* Thin red rule */}
+        {/* Red rule */}
         <motion.div
           initial={{ scaleX: 0, originX: 0 }}
           whileInView={{ scaleX: 1 }}
@@ -81,17 +100,12 @@ export function DornierThreeView() {
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.7,
-                delay: i * 0.12,
-                ease: [0.33, 1, 0.68, 1] as const,
-              }}
+              transition={{ duration: 0.7, delay: i * 0.12, ease: [0.33, 1, 0.68, 1] as const }}
               className="group relative"
             >
-              {/* Card */}
-              <div className="relative border border-white/10 rounded-xl overflow-hidden bg-black/60 hover:border-red-500/40 transition-colors duration-500">
+              <div className={`relative border ${t.cardBorder} rounded-xl overflow-hidden ${t.cardBg} transition-colors duration-500`}>
 
-                {/* Graph paper grid background */}
+                {/* Graph paper grid */}
                 <div
                   className="absolute inset-0 opacity-10"
                   style={{
@@ -115,24 +129,24 @@ export function DornierThreeView() {
                       src={view.src}
                       alt={view.alt}
                       fill
-                      className="object-contain"
+                      className={`object-contain ${t.imgClass}`}
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </motion.div>
                 </div>
 
                 {/* Card footer */}
-                <div className="border-t border-white/10 px-5 py-4 flex items-center justify-between">
+                <div className={`border-t ${t.footerBdr} px-5 py-4 flex items-center justify-between`}>
                   <div>
-                    <p className="text-white text-sm font-medium">{view.label}</p>
-                    <p className="text-white/40 text-xs mt-0.5">{view.note}</p>
+                    <p className={`${t.cardLabel} text-sm font-medium`}>{view.label}</p>
+                    <p className={`${t.cardNote} text-xs mt-0.5`}>{view.note}</p>
                   </div>
                   <span className="text-red-500/60 text-xs font-mono">{view.code}</span>
                 </div>
 
               </div>
 
-              {/* Corner brackets — top left */}
+              {/* Corner brackets */}
               <span className="absolute -top-px -left-px w-3 h-3 border-t border-l border-red-500/50 rounded-tl" />
               <span className="absolute -top-px -right-px w-3 h-3 border-t border-r border-red-500/50 rounded-tr" />
               <span className="absolute -bottom-px -left-px w-3 h-3 border-b border-l border-red-500/50 rounded-bl" />
@@ -148,9 +162,9 @@ export function DornierThreeView() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-12 flex items-center justify-between border-t border-white/10 pt-6"
+          className={`mt-12 flex items-center justify-between border-t ${t.footerBdr} pt-6`}
         >
-          <p className="text-white/20 text-xs font-mono">
+          <p className={`${t.bottomRef} text-xs font-mono`}>
             ALL DIMENSIONS FOR REFERENCE ONLY — KASAS LIMITED © {new Date().getFullYear()}
           </p>
           <p className="text-red-500/40 text-xs font-mono">
