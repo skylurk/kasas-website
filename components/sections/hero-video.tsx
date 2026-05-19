@@ -50,7 +50,7 @@ export function HeroVideo() {
         }`}
       >
         <source
-          src={isMobile ? "/videos/air-charters-to-mara.mp4" : "/videos/kasas-kenya-air-charter-aviation-and-training.mp4"}
+          src={isMobile ? "/videos/kasas-limited-flight-to-the-mara.mp4" : "/videos/kasas-kenya-air-charter-aviation-and-training.mp4"}
           type="video/mp4"
         />
       </video>
