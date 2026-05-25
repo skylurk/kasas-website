@@ -1,4 +1,5 @@
 import { SafariAircraft } from "@/components/sections/safari/safari-aircraft"
+import { SafariGallery } from "@/components/sections/safari/safari-gallery"
 import { SafariHero } from "@/components/sections/safari/safari-hero"
 import { SafariIntro } from "@/components/sections/safari/safari-intro"
 import { SafariSplits } from "@/components/sections/safari/safari-splits"
@@ -19,6 +20,7 @@ export default function SafariChartersPage() {
       {/* <SafariVideo videoId="https://www.youtube.com/watch?v=AfJSkT7IQP0" /> */}
       <SafariVideo />
       {/* <SafariVideo videoId="https://www.youtube.com/shorts/AfJSkT7IQP0" /> */}
+      <SafariGallery />
     </main>
   )
 }

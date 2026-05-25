@@ -1,11 +1,16 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
+import { ContactForm } from "@/components/sections/contact/contact-form"
 
 export function AboutTeamContent() {
+  const [formOpen, setFormOpen] = useState(false)
+
   return (
+    <>
     <motion.section
       initial={{ y: 0 }}
       whileInView={{ y: 0 }}
@@ -89,8 +94,8 @@ export function AboutTeamContent() {
           className="mt-14 flex items-center gap-4"
         >
           {/* Filled button — dark circle expands on hover */}
-          <Link
-            href="/contact"
+          <button
+            onClick={() => setFormOpen(true)}
             className="group relative overflow-hidden inline-flex items-center gap-3 h-12 pl-1.5 pr-6 rounded-full bg-white text-black text-sm font-medium transition-colors duration-500 hover:text-white"
           >
             <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-zinc-900 scale-100 group-hover:scale-[20] transition-transform duration-500 ease-in-out" />
@@ -98,7 +103,7 @@ export function AboutTeamContent() {
               <ArrowUpRight className="h-4 w-4 text-white" />
             </span>
             <span className="relative z-10">Request a Quote</span>
-          </Link>
+          </button>
 
           {/* Outline button — white circle expands on hover */}
           <Link
@@ -115,5 +120,8 @@ export function AboutTeamContent() {
 
       </div>
     </motion.section>
+
+    <ContactForm open={formOpen} onOpenChange={setFormOpen} />
+    </>
   )
 }

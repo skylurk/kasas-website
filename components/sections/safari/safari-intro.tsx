@@ -110,10 +110,10 @@ export function SafariIntro() {
           className="absolute inset-[-20%] z-0"
         >
           <Image
-            src="/images/images/safari/kasas-kenya-private-safari-charters.jpg"
+            src="/images/images/safari/kasas-limited-dornier-228-safari.webp" 
             alt="Aerial view of Kenya savannah landscape"
             fill
-            className="object-cover object-center"
+            className="object-cover object-bottom"
             sizes="100vw"
           />
         </motion.div>

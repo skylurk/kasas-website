@@ -6,6 +6,7 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { ArrowUpRight } from "lucide-react"
+import { ContactForm } from "@/components/sections/contact/contact-form"
 
 const slides = [
   {
@@ -15,7 +16,7 @@ const slides = [
     subtitle: "Direct access to East Africa's most iconic safari destinations.",
   },
   {
-    src:      "/images/images/safari/kasas-kenya-safari-charters-elephant.jpg",
+    src:      "/images/images/safari/kasas-limited-the-mara-way.webp",
     alt:      "Aerial view of Masai Mara savannah from private charter",
     title:    "The Mara, Your Way",
     subtitle: "Land directly in the reserve. No roads. No delays. Just wilderness.",
@@ -27,7 +28,7 @@ const slides = [
     subtitle: "See Africa the way few ever will — from above and up close.",
   },
   {
-    src:      "/images/images/safari/kasas-kenya-safari-charters-tour.jpg",
+    src:      "/images/images/safari/kasas-limited-where-the-road-ends.webp",
     alt:      "Kasas charter aircraft parked at remote bush airstrip",
     title:    "Where Roads End",
     subtitle: "We land where others can't. Unpaved strips, remote camps, no problem.",
@@ -45,6 +46,7 @@ const SLIDE_DURATION = 5000
 export function SafariHero() {
   const [current, setCurrent]   = useState(0)
   const [progress, setProgress] = useState(0)
+  const [formOpen, setFormOpen] = useState(false)
   const intervalRef             = useRef<ReturnType<typeof setInterval> | null>(null)
   const progressRef             = useRef<ReturnType<typeof setInterval> | null>(null)
 
@@ -85,6 +87,7 @@ useEffect(() => {
 }, [])
 
   return (
+    <>
     <section className="relative h-screen w-full overflow-hidden">
 
       {/* Slides */}
@@ -150,8 +153,8 @@ useEffect(() => {
             {/* CTAs */}
             <div className="flex items-center gap-4 pt-2">
               {/* Filled amber button — dark circle expands on hover */}
-              <Link
-                href="/contact"
+              <button
+                onClick={() => setFormOpen(true)}
                 className="group relative overflow-hidden inline-flex items-center gap-3 h-12 pl-1.5 pr-6 rounded-full bg-amber-500 text-black text-sm font-medium transition-colors duration-500 hover:text-white"
               >
                 <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-zinc-900 scale-100 group-hover:scale-[20] transition-transform duration-500 ease-in-out" />
@@ -159,7 +162,7 @@ useEffect(() => {
                   <ArrowUpRight className="h-4 w-4 text-white" />
                 </span>
                 <span className="relative z-10">Plan Your Charter</span>
-              </Link>
+              </button>
 
               {/* Outline button — white circle expands on hover */}
               <Link
@@ -247,5 +250,8 @@ useEffect(() => {
       </motion.div>
 
     </section>
+
+    <ContactForm open={formOpen} onOpenChange={setFormOpen} />
+    </>
   )
 }
