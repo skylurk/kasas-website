@@ -97,7 +97,7 @@ export function DestinationsClient() {
           ))}
         </div>
 
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           <motion.div
             key={activeCountry}
             initial={{ opacity: 0, y: 12 }}
