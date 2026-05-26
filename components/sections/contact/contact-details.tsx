@@ -1,18 +1,28 @@
 "use client"
 
+import React from "react"
 import { motion } from "framer-motion"
 import { Phone, Mail, MapPin } from "lucide-react"
 
-const details = [
+type Line = string | { label: string; value: string }
+
+const details: {
+  icon: React.ElementType
+  code: string
+  title: string
+  lines: Line[]
+  href: string
+}[] = [
   {
     icon:  Phone,
     code:  "CON-01",
     title: "Phone",
     lines: [
-      "+254 000 000 000",
-      "+254 000 000 001",
+      { label: "Admin",      value: "+254 (0) 795 992 689" },
+      { label: "Flight Ops", value: "+254 (0) 719 652 632" },
+      { label: "Sales",      value: "+254 (0) 741 729 926" },
     ],
-    href:  "tel:+254000000000",
+    href:  "tel:+254795992689",
   },
   {
     icon:  Mail,
@@ -110,14 +120,20 @@ export function ContactDetails() {
                   <h3 className="text-foreground text-lg font-semibold">
                     {detail.title}
                   </h3>
-                  {detail.lines.map((line, j) => (
-                    <p
-                      key={j}
-                      className="text-muted-foreground text-sm font-mono"
-                    >
-                      {line}
-                    </p>
-                  ))}
+                  {detail.lines.map((line, j) =>
+                    typeof line === "string" ? (
+                      <p key={j} className="text-muted-foreground text-sm font-mono">
+                        {line}
+                      </p>
+                    ) : (
+                      <p key={j} className="flex items-baseline gap-2 text-sm">
+                        <span className="text-muted-foreground/50 text-xs font-semibold uppercase tracking-wide w-20 shrink-0">
+                          {line.label}
+                        </span>
+                        <span className="text-muted-foreground font-mono">{line.value}</span>
+                      </p>
+                    )
+                  )}
                 </div>
 
                 {/* Bottom accent */}

@@ -44,7 +44,7 @@ function LinkedInIcon() {
 
 const socialLinks = [
   { label: "Facebook",  href: "https://facebook.com",  Icon: FacebookIcon  },
-  { label: "Instagram", href: "https://instagram.com", Icon: InstagramIcon },
+  { label: "Instagram", href: "https://www.instagram.com/kasaskenya/", Icon: InstagramIcon },
   { label: "LinkedIn",  href: "https://linkedin.com",  Icon: LinkedInIcon  },
 ]
 

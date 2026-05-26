@@ -1,9 +1,11 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
+import { SimulatorBookingForm } from "./simulator-booking-form"
 
 const specs = [
   { value: "6DOF",   label: "Degrees of Freedom"          },
@@ -13,7 +15,10 @@ const specs = [
 ]
 
 export function TrainingDornierSim() {
+  const [formOpen, setFormOpen] = useState(false)
+
   return (
+    <>
     <section className="relative bg-black text-white py-24 md:py-32 overflow-hidden">
 
       {/* Large sketch watermark */}
@@ -233,8 +238,8 @@ export function TrainingDornierSim() {
               className="flex items-center gap-4 pt-2"
             >
               {/* Filled red button — dark circle expands on hover */}
-              <Link
-                href="/contact"
+              <button
+                onClick={() => setFormOpen(true)}
                 className="group relative overflow-hidden inline-flex items-center gap-3 h-12 pl-1.5 pr-6 rounded-full bg-red-600 text-white text-sm font-medium transition-colors duration-500"
               >
                 <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-zinc-900 scale-100 group-hover:scale-[20] transition-transform duration-500 ease-in-out" />
@@ -242,7 +247,7 @@ export function TrainingDornierSim() {
                   <ArrowUpRight className="h-4 w-4 text-white" />
                 </span>
                 <span className="relative z-10">Book Simulator Time</span>
-              </Link>
+              </button>
 
               {/* Outline button — white circle expands on hover */}
               <Link
@@ -262,5 +267,8 @@ export function TrainingDornierSim() {
 
       </div>
     </section>
+
+    <SimulatorBookingForm open={formOpen} onOpenChange={setFormOpen} />
+    </>
   )
 }

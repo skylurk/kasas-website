@@ -6,6 +6,7 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { ArrowUpRight } from "lucide-react"
+import { ContactForm } from "@/components/sections/contact/contact-form"
 
 const slides = [
   {
@@ -34,6 +35,7 @@ export function HumanitarianHero() {
   const [current, setCurrent]   = useState(0)
   const [progress, setProgress] = useState(0)
   const [mounted, setMounted]   = useState(false)
+  const [formOpen, setFormOpen] = useState(false)
   const intervalRef             = useRef<ReturnType<typeof setInterval> | null>(null)
   const progressRef             = useRef<ReturnType<typeof setInterval> | null>(null)
 
@@ -72,6 +74,7 @@ export function HumanitarianHero() {
   }, [current, nextSlide, startProgress])
 
   return (
+    <>
     <section className="relative h-screen w-full overflow-hidden">
 
       {/* Slides */}
@@ -137,8 +140,8 @@ export function HumanitarianHero() {
             {/* CTAs */}
             <div className="flex items-center gap-4 pt-2">
               {/* Filled sky button — dark circle expands on hover */}
-              <Link
-                href="/contact"
+              <button
+                onClick={() => setFormOpen(true)}
                 className="group relative overflow-hidden inline-flex items-center gap-3 h-12 pl-1.5 pr-6 rounded-full bg-sky-500 text-white text-sm font-medium transition-colors duration-500 hover:text-white"
               >
                 <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-zinc-900 scale-100 group-hover:scale-[20] transition-transform duration-500 ease-in-out" />
@@ -146,7 +149,7 @@ export function HumanitarianHero() {
                   <ArrowUpRight className="h-4 w-4 text-white" />
                 </span>
                 <span className="relative z-10">Request a Quote</span>
-              </Link>
+              </button>
 
               {/* Outline button — white circle expands on hover */}
               <Link
@@ -234,5 +237,8 @@ export function HumanitarianHero() {
       )}
 
     </section>
+
+    <ContactForm open={formOpen} onOpenChange={setFormOpen} />
+    </>
   )
 }
