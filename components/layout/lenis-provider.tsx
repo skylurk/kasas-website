@@ -3,9 +3,11 @@
 import { useEffect, useRef } from "react"
 import Lenis from "lenis"
 import { useAnimationFrame } from "framer-motion"
+import { usePathname } from "next/navigation"
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
+  const pathname  = usePathname()
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -20,6 +22,11 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
       lenisRef.current = null
     }
   }, [])
+
+  // On every route change, jump instantly to top before Lenis can animate
+  useEffect(() => {
+    lenisRef.current?.scrollTo(0, { immediate: true })
+  }, [pathname])
 
   useAnimationFrame((t) => {
     lenisRef.current?.raf(t)

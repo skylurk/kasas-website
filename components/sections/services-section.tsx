@@ -33,7 +33,7 @@ const services = [
     title:       "Safari Charters",
     description: "Seamless safari flights that connect you to nature’s most breathtaking destinations.",
     href:        "/services/safari-charters",
-    imageSrc:    "/images/images/kasas-limited-premium-safari-charters.webp",
+    imageSrc:    "/images/images/safari/kasas-limited-step-off-the-plane-into-the-wild.webp",
     imageAlt:    "Private charter plane on bush airstrip with savannah in background",
     accentColor: "group-hover:bg-[#EA7627]",
   },

@@ -251,7 +251,7 @@ export function TrainingDornierSim() {
 
               {/* Outline button — white circle expands on hover */}
               <Link
-                href="/fleet/dornier-228"
+                href="/fleet"
                 className="group relative overflow-hidden inline-flex items-center gap-3 h-12 pl-1.5 pr-6 rounded-full border border-white/20 text-white text-sm font-medium transition-colors duration-500 hover:text-black"
               >
                 <span aria-hidden="true" className="absolute left-1.5 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-white scale-100 group-hover:scale-[20] transition-transform duration-500 ease-in-out" />
