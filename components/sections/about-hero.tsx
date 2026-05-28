@@ -15,8 +15,8 @@ const slides = [
     subtitle: "Over a decade of safe, reliable aviation across East Africa.",
   },
   {
-    src:      "/images/images/about/kasas-limited-aviation-avionics-team.webp",
-    alt:      "Pilot conducting pre-flight checks",
+    src:      "/images/images/about/kasas-limited-pilot.webp",
+    alt:      "Pilots before a flight",
     title:    "Flown by the Best",
     subtitle: "Our pilots bring thousands of hours of East African experience.",
   },
@@ -33,8 +33,8 @@ const slides = [
     subtitle: "Rigorous maintenance standards on every aircraft, every flight.",
   },
   {
-    src:      "/images/images/about/kasas-limited-aviation-maintenance-team.webp",
-    alt:      "Passengers boarding private charter flight",
+    src:      "/images/images/about/kasas-pilots-in-cockpit.webp",
+    alt:      "Pilots in cockpit before flight",
     title:    "Your Journey, Your Terms",
     subtitle: "Flexible scheduling built around you, not an airline timetable.",
   },

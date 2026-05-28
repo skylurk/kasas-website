@@ -144,9 +144,9 @@ export function TrainingSimulators() {
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 z-10" />
 
                 {/* Image count badge */}
-                <div className="absolute bottom-3 right-3 z-20 bg-black/60 backdrop-blur-sm text-white/70 text-xs font-mono px-2.5 py-1 rounded-full">
+                {/* <div className="absolute bottom-3 right-3 z-20 bg-black/60 backdrop-blur-sm text-white/70 text-xs font-mono px-2.5 py-1 rounded-full">
                   {sim.images.length} photos
-                </div>
+                </div> */}
 
                 {/* Code */}
                 <div className="absolute top-3 left-3 z-20 text-white/40 text-xs font-mono">
@@ -155,7 +155,7 @@ export function TrainingSimulators() {
               </div>
 
               {/* Thumbnail strip */}
-              <div className="flex gap-1 p-1 bg-black/40">
+              {/* <div className="flex gap-1 p-1 bg-black/40">
                 {sim.images.map((img, j) => (
                   <div
                     key={j}
@@ -171,7 +171,7 @@ export function TrainingSimulators() {
                     />
                   </div>
                 ))}
-              </div>
+              </div> */}
 
               {/* Content */}
               <div className="p-6 flex flex-col gap-3 bg-black">
