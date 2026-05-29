@@ -49,45 +49,41 @@ const slides = [
 const SLIDE_DURATION = 5000 // 5 seconds
 
 export function AboutHero() {
-  const [current, setCurrent]     = useState(0)
-  const [progress, setProgress]   = useState(0)
-  const intervalRef               = useRef<ReturnType<typeof setInterval> | null>(null)
-  const progressRef               = useRef<ReturnType<typeof setInterval> | null>(null)
+  const [current, setCurrent] = useState(0)
+  const intervalRef           = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const goToSlide = useCallback((index: number) => {
     setCurrent(index)
-    setProgress(0)
   }, [])
 
   const nextSlide = useCallback(() => {
     setCurrent((prev) => (prev + 1) % slides.length)
-    setProgress(0)
-  }, [])
-
-  // Progress ticker — updates every 50ms for smooth circle animation
-  const startProgress = useCallback(() => {
-    if (progressRef.current) clearInterval(progressRef.current)
-    setProgress(0)
-    progressRef.current = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) return 100
-        return prev + (50 / SLIDE_DURATION) * 100
-      })
-    }, 50)
   }, [])
 
   // Auto advance
   useEffect(() => {
-    startProgress()
     intervalRef.current = setInterval(nextSlide, SLIDE_DURATION)
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current)
-      if (progressRef.current) clearInterval(progressRef.current)
     }
-  }, [current, nextSlide, startProgress])
+  }, [current, nextSlide])
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
+
+      {/* Preload all slide images upfront — fixes flash on slides 1–5 */}
+      <div aria-hidden="true" className="sr-only">
+        {slides.map((slide) => (
+          <Image
+            key={slide.src}
+            src={slide.src}
+            alt=""
+            width={1}
+            height={1}
+            priority
+          />
+        ))}
+      </div>
 
       {/* Slides */}
       <AnimatePresence mode="sync">
@@ -110,7 +106,7 @@ export function AboutHero() {
               src={slides[current].src}
               alt={slides[current].alt}
               fill
-              priority={current === 0}
+              priority
               className="object-cover"
               sizes="100vw"
             />
@@ -186,32 +182,29 @@ export function AboutHero() {
               )}
             />
 
-            {/* Animated progress ring — only on active dot */}
+            {/* Animated progress ring — driven by framer-motion, zero re-renders */}
             {i === current && (
               <svg
                 className="absolute inset-0 w-6 h-6 -rotate-90"
                 viewBox="0 0 24 24"
               >
                 <circle
-                  cx="12"
-                  cy="12"
-                  r="9"
+                  cx="12" cy="12" r="9"
                   fill="none"
                   stroke="white"
                   strokeWidth="1.5"
                   strokeOpacity="0.3"
                 />
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="9"
+                <motion.circle
+                  key={current}
+                  cx="12" cy="12" r="9"
                   fill="none"
                   stroke="white"
                   strokeWidth="1.5"
-                  strokeDasharray={`${2 * Math.PI * 9}`}
-                  strokeDashoffset={`${2 * Math.PI * 9 * (1 - progress / 100)}`}
                   strokeLinecap="round"
-                  className="transition-none"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: SLIDE_DURATION / 1000, ease: "linear" }}
                 />
               </svg>
             )}

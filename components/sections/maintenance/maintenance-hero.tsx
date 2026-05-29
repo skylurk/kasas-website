@@ -31,46 +31,31 @@ const slides = [
 const SLIDE_DURATION = 5000
 
 export function MaintenanceHero() {
-  const [current, setCurrent]   = useState(0)
-  const [progress, setProgress] = useState(0)
-  const [mounted, setMounted]   = useState(false)
-  const intervalRef             = useRef<ReturnType<typeof setInterval> | null>(null)
-  const progressRef             = useRef<ReturnType<typeof setInterval> | null>(null)
+  const [current, setCurrent] = useState(0)
+  const [mounted, setMounted] = useState(false)
+  const intervalRef           = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => { setMounted(true) }, [])
 
-  const goToSlide = useCallback((index: number) => {
-    setCurrent(index)
-    setProgress(0)
-  }, [])
-
+  const goToSlide = useCallback((index: number) => { setCurrent(index) }, [])
   const nextSlide = useCallback(() => {
     setCurrent((prev) => (prev + 1) % slides.length)
-    setProgress(0)
-  }, [])
-
-  const startProgress = useCallback(() => {
-    if (progressRef.current) clearInterval(progressRef.current)
-    setProgress(0)
-    progressRef.current = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) return 100
-        return prev + (50 / SLIDE_DURATION) * 100
-      })
-    }, 50)
   }, [])
 
   useEffect(() => {
-    startProgress()
     intervalRef.current = setInterval(nextSlide, SLIDE_DURATION)
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
-      if (progressRef.current) clearInterval(progressRef.current)
-    }
-  }, [current, nextSlide, startProgress])
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+  }, [current, nextSlide])
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
+
+      {/* Preload all slide images */}
+      <div aria-hidden="true" className="sr-only">
+        {slides.map((slide) => (
+          <Image key={slide.src} src={slide.src} alt="" width={1} height={1} priority />
+        ))}
+      </div>
 
       {/* Slides */}
       <AnimatePresence mode="sync">
@@ -92,7 +77,7 @@ export function MaintenanceHero() {
               src={slides[current].src}
               alt={slides[current].alt}
               fill
-              priority={current === 0}
+              priority
               className="object-cover object-center"
               sizes="100vw"
             />
@@ -101,7 +86,7 @@ export function MaintenanceHero() {
       </AnimatePresence>
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/10 z-10" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-black/10 z-10" />
 
       {/* Text content — bottom left */}
       <div className="absolute inset-0 z-20 flex flex-col justify-end px-6 md:px-16 pb-28 md:pb-36 max-w-5xl">
@@ -181,7 +166,7 @@ export function MaintenanceHero() {
               )}
               style={i === current ? { backgroundColor: "#595B5C" } : {}}
             />
-            {mounted && i === current && (
+            {i === current && (
               <svg
                 className="absolute inset-0 w-6 h-6 -rotate-90"
                 viewBox="0 0 24 24"
@@ -192,15 +177,16 @@ export function MaintenanceHero() {
                   stroke="rgba(89,91,92,0.3)"
                   strokeWidth="1.5"
                 />
-                <circle
+                <motion.circle
+                  key={current}
                   cx="12" cy="12" r="9"
                   fill="none"
                   stroke="#595B5C"
                   strokeWidth="1.5"
-                  strokeDasharray={`${2 * Math.PI * 9}`}
-                  strokeDashoffset={`${2 * Math.PI * 9 * (1 - progress / 100)}`}
                   strokeLinecap="round"
-                  className="transition-none"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: SLIDE_DURATION / 1000, ease: "linear" }}
                 />
               </svg>
             )}

@@ -44,51 +44,31 @@ const slides = [
 const SLIDE_DURATION = 5000
 
 export function SafariHero() {
-  const [current, setCurrent]   = useState(0)
-  const [progress, setProgress] = useState(0)
+  const [current, setCurrent] = useState(0)
   const [formOpen, setFormOpen] = useState(false)
   const intervalRef             = useRef<ReturnType<typeof setInterval> | null>(null)
-  const progressRef             = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const goToSlide = useCallback((index: number) => {
-    setCurrent(index)
-    setProgress(0)
-  }, [])
-
+  const goToSlide = useCallback((index: number) => { setCurrent(index) }, [])
   const nextSlide = useCallback(() => {
     setCurrent((prev) => (prev + 1) % slides.length)
-    setProgress(0)
-  }, [])
-
-  const startProgress = useCallback(() => {
-    if (progressRef.current) clearInterval(progressRef.current)
-    setProgress(0)
-    progressRef.current = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) return 100
-        return prev + (50 / SLIDE_DURATION) * 100
-      })
-    }, 50)
   }, [])
 
   useEffect(() => {
-    startProgress()
     intervalRef.current = setInterval(nextSlide, SLIDE_DURATION)
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
-      if (progressRef.current) clearInterval(progressRef.current)
-    }
-  }, [current, nextSlide, startProgress])
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current) }
+  }, [current, nextSlide])
 
-  const [mounted, setMounted] = useState(false)
-
-useEffect(() => {
-  setMounted(true)
-}, [])
 
   return (
     <>
     <section className="relative h-screen w-full overflow-hidden">
+
+      {/* Preload all slide images */}
+      <div aria-hidden="true" className="sr-only">
+        {slides.map((slide, i) => (
+          <Image key={i} src={slide.src} alt="" width={1} height={1} priority />
+        ))}
+      </div>
 
       {/* Slides */}
       <AnimatePresence mode="sync">
@@ -110,7 +90,7 @@ useEffect(() => {
               src={slides[current].src}
               alt={slides[current].alt}
               fill
-              priority={current === 0}
+              priority
               className="object-cover object-center"
               sizes="100vw"
             />
@@ -119,7 +99,7 @@ useEffect(() => {
       </AnimatePresence>
 
       {/* Warm gradient overlay — heavier at bottom */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/10 z-10" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-black/10 z-10" />
 
       {/* Warm amber tint — very subtle */}
       <div className="absolute inset-0 bg-amber-950/10 z-10 pointer-events-none" />
@@ -215,17 +195,18 @@ useEffect(() => {
                   strokeWidth="1.5"
                 />
                 {/* Progress */}
-                <circle
+                <motion.circle
+                  key={current}
                   cx="12"
                   cy="12"
                   r="9"
                   fill="none"
                   stroke="rgb(251 191 36)"
                   strokeWidth="1.5"
-                  strokeDasharray={`${2 * Math.PI * 9}`}
-                  strokeDashoffset={`${2 * Math.PI * 9 * (1 - progress / 100)}`}
                   strokeLinecap="round"
-                  className="transition-none"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: SLIDE_DURATION / 1000, ease: "linear" }}
                 />
               </svg>
             )}
