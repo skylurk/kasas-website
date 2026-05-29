@@ -15,13 +15,13 @@ const slides = [
     subtitle: "KCAA approved aviation training with East Africa's most advanced simulator.",
   },
   {
-    src:      "/images/images/training/dornier-229-hydraulics.jpg",
+    src:      "/images/images/training/kasas-training-sims.webp",
     alt:      "Cessna 172 simulator cockpit at Kasas training facility",
     title:    "From First Flight to Command.",
     subtitle: "Simulator training programs for every stage of a pilot's career.",
   },
   {
-    src:      "/images/images/training/dornier-229-hydraulics.jpg",
+    src:      "/images/images/training/kasas-limited-championing-aviation.webp",
     alt:      "Instructor and trainee pilot in simulator cockpit",
     title:    "The Only One of Its Kind.",
     subtitle: "East Africa's only full motion Dornier 228 simulator — built from the original.",

@@ -82,7 +82,7 @@ export function MaintenanceFacilities() {
               {/* Hangar image */}
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border">
                 <Image
-                  src="/images/images/maintenance/kasas-kenya-aircraft-maintenance.webp"
+                  src="/images/images/maintenance/kasas-limited-avionics-test.webp"
                   alt="Kasas maintenance hangar at Wilson Airport — 5 aircraft capacity"
                   fill
                   className="object-cover"

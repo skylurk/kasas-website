@@ -116,7 +116,7 @@ export function MaintenanceEngineShop() {
                 />
 
                 <Image
-                  src="/images/images/maintenance/kasas-kenya-aircraft-maintenance.webp"
+                  src="/images/images/maintenance/kasas-limited-engine-overhaul.webp"
                   alt="Kasas TPE331 engine shop at Wilson Airport — overhaul and testing facility"
                   fill
                   className="object-cover"

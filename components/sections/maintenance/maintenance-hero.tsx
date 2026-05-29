@@ -9,19 +9,19 @@ import { ArrowUpRight } from "lucide-react"
 
 const slides = [
   {
-    src:      "/images/images/maintenance/kasas-kenya-aircraft-maintenance.webp",
+    src:      "/images/images/maintenance/kasas-limited-avionics-maintenance.webp",
     alt:      "Kasas maintenance engineers working on Dornier 228 in hangar",
     title:    "Precision. Every Time.",
     subtitle: "One of the largest Dornier 228 maintenance operations in the world — based at Wilson Airport, Nairobi.",
   },
   {
-    src:      "/images/images/maintenance/kasas-kenya-aircraft-maintenance.webp",
+    src:      "/images/images/maintenance/kasas-limited-technician-maintenance.webp",
     alt:      "TPE331 engine being overhauled in Kasas engine shop",
     title:    "In-House. In Control.",
     subtitle: "Our KCAA approved TPE331 engine shop gives us full control over reliability, cost and downtime.",
   },
   {
-    src:      "/images/images/maintenance/kasas-kenya-aircraft-maintenance.webp",
+    src:      "/images/images/maintenance/kasas-limited-team-maintenance.webp",
     alt:      "Kasas hangar at Wilson Airport with five aircraft",
     title:    "Built to Keep You Flying.",
     subtitle: "Scheduled, unscheduled, and line maintenance — delivered to the highest international standards.",
@@ -52,8 +52,8 @@ export function MaintenanceHero() {
 
       {/* Preload all slide images */}
       <div aria-hidden="true" className="sr-only">
-        {slides.map((slide) => (
-          <Image key={slide.src} src={slide.src} alt="" width={1} height={1} priority />
+        {slides.map((slide, i) => (
+          <Image key={i} src={slide.src} alt="" width={1} height={1} priority />
         ))}
       </div>
 
