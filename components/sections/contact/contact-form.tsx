@@ -41,6 +41,7 @@ const fieldVariants = {
 export function ContactForm({ open, onOpenChange }: ContactFormProps) {
   const [submitted, setSubmitted] = useState(false)
   const [loading,   setLoading]   = useState(false)
+  const [error,     setError]     = useState<string | null>(null)
 
   const [form, setForm] = useState({
     name:        "",
@@ -61,15 +62,24 @@ export function ContactForm({ open, onOpenChange }: ContactFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    // Simulate submission — replace with your actual API call
-    await new Promise((res) => setTimeout(res, 1500))
-    setLoading(false)
-    setSubmitted(true)
-    // Auto close after 3 seconds
-    setTimeout(() => {
-      onOpenChange(false)
-      setTimeout(() => setSubmitted(false), 500)
-    }, 3000)
+    setError(null)
+    try {
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error("send_failed")
+      setSubmitted(true)
+      setTimeout(() => {
+        onOpenChange(false)
+        setTimeout(() => setSubmitted(false), 500)
+      }, 3000)
+    } catch {
+      setError("Something went wrong. Please try again or email us directly.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -281,6 +291,17 @@ export function ContactForm({ open, onOpenChange }: ContactFormProps) {
                     className="resize-none"
                   />
                 </motion.div>
+
+                {/* Error */}
+                {error && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-sm text-red-500 text-center"
+                  >
+                    {error}
+                  </motion.p>
+                )}
 
                 {/* Submit */}
                 <motion.div
