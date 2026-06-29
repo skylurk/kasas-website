@@ -11,8 +11,8 @@ const slides = [
   {
     src:      "/images/images/about/kasas-limited-air-charter-and-maintenance.webp",
     alt:      "Kasas Limited aircraft on runway at sunrise",
-    title:    "A Legacy Built in the Skies",
-    subtitle: "Over a decade of safe, reliable aviation across East Africa.",
+    title:    "A Legacy Built on Quality",
+    subtitle: "Two decades of safe, reliable aviation across East Africa.",
   },
   {
     src:      "/images/images/about/kasas-limited-pilot.webp",
@@ -23,7 +23,7 @@ const slides = [
   {
     src:      "/images/images/about/kasas-limited-aviation-engineering.webp",
     alt:      "Aerial view of savannah at golden hour",
-    title:    "Every Route, Every Terrain",
+    title:    "Your Journey, Your Flight",
     subtitle: "From bush strips to international airports — we know the way.",
   },
   {

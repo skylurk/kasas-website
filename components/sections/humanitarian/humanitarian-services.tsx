@@ -19,13 +19,13 @@ const services = [
   {
     icon:     Radio,
     code:     "SVC-02",
-    title:    "Flex Flight Solutions",
+    title:    "Special Missions",
     body:     "Charter aircraft are readily available from our main operating base at Wilson Airport in Nairobi, Kenya. Our team can arrange a quotation for any local or regional charter requirements you have.",
     highlights: [
       "Based at Wilson Airport, Nairobi",
       "Local & regional coverage",
       "Passenger & cargo charters",
-      "Rapid quotation turnaround",
+      "Rapid quotation",
     ],
   },
 ]

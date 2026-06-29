@@ -44,8 +44,7 @@ export function Statement() {
           <p className="text-black/60 text-base md:text-lg leading-relaxed">
             Our pilots are among East Africa's most experienced. Our aircraft
             are maintained to the highest international standards. And our
-            team is available around the clock, because great trips don't
-            always start at 9am.
+            team is available around the clock.
           </p>
         </motion.div>
 

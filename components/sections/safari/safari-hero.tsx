@@ -145,7 +145,7 @@ export function SafariHero() {
               </button>
 
               {/* Outline button — white circle expands on hover */}
-              <Link
+              {/* <Link
                 href="/destinations"
                 className="group relative overflow-hidden inline-flex items-center gap-3 h-12 pl-1.5 pr-6 rounded-full border border-white/30 text-white text-sm font-medium transition-colors duration-500 hover:text-black"
               >
@@ -154,7 +154,7 @@ export function SafariHero() {
                   <ArrowUpRight className="h-4 w-4 text-black" />
                 </span>
                 <span className="relative z-10">View Destinations</span>
-              </Link>
+              </Link> */}
             </div>
           </motion.div>
         </AnimatePresence>
