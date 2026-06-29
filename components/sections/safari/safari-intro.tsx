@@ -41,7 +41,7 @@ export function SafariIntro() {
           >
             Private Safari Charters
             <br />
-            <span className="text-black/30">Across Kenya</span>
+            <span className="text-black/30">Across East Africa</span>
           </motion.h2>
 
           {/* Divider */}

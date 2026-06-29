@@ -24,7 +24,7 @@ const slides = [
   {
     src:      "/images/images/humanitarian/humanitarian-charters-dornier-228.jpg",
     alt:      "Kasas aircraft at operational base in remote East Africa",
-    title:    "Reliable. Every Time.",
+    title:    "Reliable. Every last mile.",
     subtitle: "Long-term ACMI leases and flexible charter solutions for humanitarian organisations worldwide.",
   },
 ]

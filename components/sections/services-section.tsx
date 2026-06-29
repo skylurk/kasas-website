@@ -6,36 +6,42 @@ import { SectionHeading } from "@/components/shared/section-heading"
 
 const services = [
   {
-    title:       "Humanitarian Flights",
-    description: "Delivering vital humanitarian flights with reliability, safety, and trusted expertise",
-    href:        "/services/humanitarian-flights",
-    imageSrc:    "/images/images/kasas-premium-humanitarian-flights.webp",
-    imageAlt:    "Humanitarian flight landing on remote airstrip in East Africa",
-   accentColor: "group-hover:bg-[#68CBDD]",
+    title: "Safari Charters",
+    description:
+      "Seamless safari flights that connect you to nature’s most breathtaking destinations.",
+    href: "/services/safari-charters",
+    imageSrc:
+      "/images/images/safari/kasas-limited-step-off-the-plane-into-the-wild.webp",
+    imageAlt:
+      "Private charter plane on bush airstrip with savannah in background",
+    accentColor: "group-hover:bg-[#EA7627]",
   },
   {
-    title:       "Training",
-    description: "Shaping skilled aviators through hands-on training and simulator excellence.",
-    href:        "/services/training",
-    imageSrc:    "/images/images/kasas-limited-aviation-training.webp",
-    imageAlt:    "Pilot in cockpit during training flight over Nairobi",
-    accentColor: "group-hover:bg-[#0C7DC0]",
+    title: "Humanitarian Flights",
+    description:
+      "Delivering vital humanitarian flights with reliability, safety, and trusted expertise",
+    href: "/services/humanitarian-flights",
+    imageSrc: "/images/images/kasas-premium-humanitarian-flights.webp",
+    imageAlt: "Humanitarian flight landing on remote airstrip in East Africa",
+    accentColor: "group-hover:bg-[#68CBDD]",
   },
   {
-    title:       "Aircraft Maintenance",
-    description: "Where precision engineering meets trust: keeping every flight mission-ready.",
-    href:        "/services/maintenance",
-    imageSrc:    "/images/images/kasas-limited-aircraft-maintenance.webp",
-    imageAlt:    "Aircraft maintenance engineer inspecting jet engine",
+    title: "Aircraft Maintenance",
+    description:
+      "Where precision engineering meets trust: keeping every flight mission-ready.",
+    href: "/services/maintenance",
+    imageSrc: "/images/images/kasas-limited-aircraft-maintenance.webp",
+    imageAlt: "Aircraft maintenance engineer inspecting jet engine",
     accentColor: "group-hover:bg-[#595B5C]",
   },
   {
-    title:       "Safari Charters",
-    description: "Seamless safari flights that connect you to nature’s most breathtaking destinations.",
-    href:        "/services/safari-charters",
-    imageSrc:    "/images/images/safari/kasas-limited-step-off-the-plane-into-the-wild.webp",
-    imageAlt:    "Private charter plane on bush airstrip with savannah in background",
-    accentColor: "group-hover:bg-[#EA7627]",
+    title: "Training",
+    description:
+      "Shaping skilled aviators through hands-on training and simulator excellence.",
+    href: "/services/training",
+    imageSrc: "/images/images/kasas-limited-aviation-training.webp",
+    imageAlt: "Pilot in cockpit during training flight over Nairobi",
+    accentColor: "group-hover:bg-[#0C7DC0]",
   },
 ]
 
@@ -50,7 +56,7 @@ const container = {
 
 const cardItem = {
   hidden: { opacity: 0, y: 40 },
-  show:   {
+  show: {
     opacity: 1,
     y: 0,
     transition: { duration: 0.7, ease: [0.33, 1, 0.68, 1] as const },
@@ -59,9 +65,8 @@ const cardItem = {
 
 export function ServicesSection() {
   return (
-    <section className="bg-background py-24 md:py-32 border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-
+    <section className="border-t border-border bg-background py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* Heading */}
         <div className="mb-14">
           <SectionHeading
@@ -78,7 +83,7 @@ export function ServicesSection() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-5"
+          className="grid grid-cols-1 gap-5 md:grid-cols-2"
         >
           {services.map((service) => (
             <motion.div key={service.href} variants={cardItem}>
@@ -86,7 +91,6 @@ export function ServicesSection() {
             </motion.div>
           ))}
         </motion.div>
-
       </div>
     </section>
   )

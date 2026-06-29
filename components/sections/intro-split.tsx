@@ -33,13 +33,13 @@ export function IntroSplit() {
         >
           <SectionHeading
             label="Who We Are"
-            heading="Private Aviation, Redefined."
-            subheading="We are an Air Charter and ACMI contract operator that delivers premium quality services to a diverse range of clients across Africa. We primarily operate the versatile Dornier 228 that allows us to cover a wide variety of mission profiles by being ideally suited to challenging operating environments."
+            heading="African Aviation, Redefined."
+            subheading="We are an Air Charter and ACMI contract operator that delivers premium quality services to a diverse range of clients across Africa. We operate the versatile Dornier 228 that allows us to cover a wide variety of mission profiles by being ideally suited to challenging operating environments."
             align="left"
           />
 
           <p className="text-white/90 text-base leading-relaxed">
-            We have been successfully providing air transport support to the Humanitarian, Relief, Resource and Tourism sectors allover the continent for many years.
+            We have been successfully providing air transport support to the Humanitarian, Relief, Resource and Tourism sectors allover the continent for over 20 years.
           </p>
 
           <div className="flex items-center gap-10 pt-4">

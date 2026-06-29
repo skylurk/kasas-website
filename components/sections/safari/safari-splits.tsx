@@ -16,7 +16,7 @@ const splits = [
   {
     label:    "The Journey",
     heading:  "Step Off the Plane. Step Into the Wild.",
-    body:     "With Kasas, your adventure begins the moment you take off. Instead of long road journeys, you'll arrive swiftly and refreshed, ready to step straight into the wild — without any added stops that occur on scheduled flights.",
+    body:     "With Kasas, your adventure begins the moment you take off. Instead of arduous road journeys, you'll arrive swiftly and refreshed, ready to step straight into the wild — without any added stops that occur on scheduled flights.",
     imageSrc: "/images/images/safari/kasas-limited-step-off-the-plane-into-the-wild.webp",
     imageAlt: "The ground team waiting for passengers to step off the plane and into the wild",
     reverse:  true,
