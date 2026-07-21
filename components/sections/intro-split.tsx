@@ -73,12 +73,13 @@ export function IntroSplit() {
             className="h-full w-full"
           >
             <Image
-              src="/images/images/aircraft-dashboard.jpg"
+              src="/images/images/kasas-limited-dashboard.png"
+              // src="/images/images/aircraft-dashboard.jpg"
             //   src="/images/images/kasas-limited-premium-safari-and-air-charters-optimized.webp"
               alt="Kasas Limited private jet on runway at dusk"
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 968px) 100vw, 50vw"
             />
           </motion.div>
         </motion.div>
